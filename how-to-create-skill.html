@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Как сделать скилл в Claude Code — Гайд для новичка</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            color: #1a202c;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #764ba2;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        section {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: #2d3748;
+            margin: 1.5rem 0 1rem;
+        }
+
+        h4 {
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin: 1rem 0 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #4a5568;
+        }
+
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+        }
+
+        .step {
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: #f7fafc;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #667eea;
+        }
+
+        pre {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        pre code {
+            background: transparent;
+            color: #e2e8f0;
+            padding: 0;
+        }
+
+        .checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin: 0.75rem 0;
+            padding: 0.75rem;
+            background: #f7fafc;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .checkbox:hover {
+            background: #edf2f7;
+        }
+
+        .checkbox input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+        }
+
+        .checkbox.completed {
+            opacity: 0.6;
+        }
+
+        .checkbox.completed span {
+            text-decoration: line-through;
+        }
+
+        .warning {
+            background: #fff5f5;
+            border-left: 4px solid #fc8181;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .warning strong {
+            color: #c53030;
+        }
+
+        .tip {
+            background: #f0fff4;
+            border-left: 4px solid #48bb78;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .tip strong {
+            color: #2f855a;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, #667eea15, #764ba215);
+            border: 2px solid #667eea;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+        }
+
+        .example-box h4 {
+            color: #667eea;
+            margin-top: 0;
+        }
+
+        .cheatsheet {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+            padding: 2rem;
+            border-radius: 16px;
+            margin-top: 2rem;
+        }
+
+        .cheatsheet h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cheatsheet ul {
+            color: white;
+        }
+
+        .cheatsheet li {
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">
+            ← Вернуться на главную
+        </a>
+
+        <header>
+            <h1>🎓 Как сделать скилл в Claude Code</h1>
+            <p class="subtitle">Пошаговый гайд для новичка, который никогда не программировал</p>
+            <div class="badge">⏱ Время чтения: 10 минут</div>
+        </header>
+
+        <section>
+            <h2>📋 Что такое скилл?</h2>
+            <p><strong>Скилл в Claude Code</strong> — это как "плагин" или "расширение" для ИИ-помощника. Вы даёте Claude специальные инструкции и инструменты, и он становится экспертом в конкретной задаче.</p>
+            <p><strong>Простой пример:</strong> Скилл для проверки орфографии, который всегда находит ошибки и предлагает исправления. Или скилл для создания описаний товаров, который пишет продающие тексты.</p>
+        </section>
+
+        <section>
+            <h2>🎯 Зачем нужен скилл?</h2>
+            <ul>
+                <li>Экономит время на повторяющихся задачах</li>
+                <li>Делает работу Claude более специализированной</li>
+                <li>Можно поделиться с другими людьми</li>
+                <li>Просто создать (даже если вы не программист!)</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>📝 Как создать скилл — Пошаговая инструкция</h2>
+
+            <div class="step">
+                <h3><span class="step-number">1</span> Определите, что должен делать ваш скилл</h3>
+                <p>Придумайте <strong>одну чёткую задачу</strong>. Не пытайтесь сделать "всё сразу".</p>
+                <div class="example-box">
+                    <h4>✅ Хорошие примеры:</h4>
+                    <ul>
+                        <li>"Проверять текст на ошибки пунктуации"</li>
+                        <li>"Создавать описания для товаров маркетплейса"</li>
+                        <li>"Переводить текст с английского на русский"</li>
+                    </ul>
+                    <h4>❌ Плохой пример:</h4>
+                    <ul>
+                        <li>"Помогать со всем" (слишком расплывчато)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="step">
+                <h3><span class="step-number">2</span> Создайте папку для скилла</h3>
+                <p>Скилл — это просто <strong>папка с файлами</strong>. Создайте её где угодно на компьютере.</p>
+                <pre><code>mkdir my-first-skill
+cd my-first-skill</code></pre>
+                <div class="tip">
+                    <strong>💡 Совет:</strong> Название папки должно быть простым, без пробелов и русских букв. Используйте дефисы: <code>my-cool-skill</code>
+                </div>
+            </div>
+
+            <div class="step">
+                <h3><span class="step-number">3</span> Создайте главный файл скилла</h3>
+                <p>В папке создайте текстовый файл с названием <code>skill.md</code> (именно так!)</p>
+                <pre><code># Название скилла
+
+You are a helpful assistant specialized in [ваша задача].
+
+## Instructions
+[ваши инструкции для Claude]
+
+## Examples
+[примеры, если нужны]</code></pre>
+            </div>
+
+            <div class="step">
+                <h3><span class="step-number">4</span> Напишите инструкции для Claude</h3>
+                <p>В файле <code>skill.md</code> опишите, что должен делать Claude. <strong>Пишите просто и понятно.</strong></p>
+                <pre><code>You are a spelling checker assistant.
+
+Your task:
+1. Check the text for spelling errors
+2. Suggest corrections
+3. Explain each correction
+
+Always be friendly and helpful.</code></pre>
+                <div class="tip">
+                    <strong>💡 Совет:</strong> Используйте списки и numbered steps (1, 2, 3...) — Claude любит структуру.
+                </div>
+            </div>
+
+            <div class="step">
+                <h3><span class="step-number">5</span> Протестируйте скилл</h3>
+                <p>Запустите Claude Code и скажите:</p>
+                <pre><code>Используй скилл из папки my-first-skill</code></pre>
+                <p>Или просто откройте файл <code>skill.md</code> в Claude — он автоматически загрузит инструкции.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>🎮 Пример скилла — "Улучшатель текста"</h2>
+            <p>Вот полный пример простого скилла, который делает текст более читаемым:</p>
+            <pre><code># Text Improver Skill
+
+You are a text improvement expert.
+
+## Your Task
+Make any text more readable and professional while keeping the original meaning.
+
+## Steps
+1. Read the user's text
+2. Identify areas for improvement:
+   - Long sentences → break into shorter ones
+   - Complex words → replace with simpler ones
+   - Passive voice → change to active voice
+3. Rewrite the text
+4. Show what you changed and why
+
+## Rules
+- Keep the original meaning
+- Don't add new information
+- Always explain your changes
+
+## Example
+User: "The report was written by me and it was sent to the boss."
+You: "I wrote the report and sent it to the boss."
+Changed "was written by me" → "I wrote" (active voice is clearer)</code></pre>
+        </section>
+
+        <section>
+            <h2>✅ Чек-лист: Всё готово?</h2>
+            <p>Проверьте перед запуском:</p>
+
+            <label class="checkbox">
+                <input type="checkbox" onchange="this.parentElement.classList.toggle('completed')">
+                <span>Папка скилла создана</span>
+            </label>
+
+            <label class="checkbox">
+                <input type="checkbox" onchange="this.parentElement.classList.toggle('completed')">
+                <span>Файл skill.md существует</span>
+            </label>
+
+            <label class="checkbox">
+                <input type="checkbox" onchange="this.parentElement.classList.toggle('completed')">
+                <span>Название скилла написано в начале файла</span>
+            </label>
+
+            <label class="checkbox">
+                <input type="checkbox" onchange="this.parentElement.classList.toggle('completed')">
+                <span>Инструкции понятны и конкретны</span>
+            </label>
+
+            <label class="checkbox">
+                <input type="checkbox" onchange="this.parentElement.classList.toggle('completed')">
+                <span>Есть примеры (хотя бы один)</span>
+            </label>
+
+            <label class="checkbox">
+                <input type="checkbox" onchange="this.parentElement.classList.toggle('completed')">
+                <span>Файл сохранён</span>
+            </label>
+        </section>
+
+        <section>
+            <h2>⚠️ Типовые ошибки и как их исправить</h2>
+
+            <div class="warning">
+                <h4>❌ Ошибка 1: "Claude не понимает, что делать"</h4>
+                <p><strong>Причина:</strong> Слишком расплывчатые инструкции.</p>
+                <p><strong>Решение:</strong> Добавьте конкретные шаги. Вместо "Помогай с текстом" напишите:</p>
+                <pre><code>Your task:
+1. Check grammar
+2. Check spelling
+3. Suggest improvements</code></pre>
+            </div>
+
+            <div class="warning">
+                <h4>❌ Ошибка 2: "Скилл работает, но делает не то"</h4>
+                <p><strong>Причина:</strong> Не хватает примеров.</p>
+                <p><strong>Решение:</strong> Добавьте раздел <code>## Examples</code> с 2-3 примерами "вход → выход".</p>
+            </div>
+
+            <div class="warning">
+                <h4>❌ Ошибка 3: "Claude добавляет лишнее"</h4>
+                <p><strong>Причина:</strong> Нет ограничений в правилах.</p>
+                <p><strong>Решение:</strong> Добавьте раздел <code>## Rules</code> с明确的 ограничениями:</p>
+                <pre><code>## Rules
+- Don't add new information
+- Keep original tone
+- Stay concise</code></pre>
+            </div>
+
+            <div class="warning">
+                <h4>❌ Ошибка 4: "Файл не открывается"</h4>
+                <p><strong>Причина:</strong> Неверное название или кодировка.</p>
+                <p><strong>Решение:</strong> Проверьте:
+                <ul>
+                    <li>Файл называется точно <code>skill.md</code> (не skill.txt)</li>
+                    <li>Нет пробелов в названии</li>
+                    <li>Файл сохранён в UTF-8 кодировке</li>
+                </ul>
+            </div>
+
+            <div class="warning">
+                <h4>❌ Ошибка 5: "Результаты непредсказуемые"</h4>
+                <p><strong>Причина:</strong> Claude слишком творчески интерпретирует инструкции.</p>
+                <p><strong>Решение:</strong> Добавьте фразу:</p>
+                <pre><code>Follow these instructions EXACTLY. Do not improvise.</code></pre>
+            </div>
+        </section>
+
+        <section>
+            <h2>🚀 Мини-шпаргалка: "Ничего не работает"</h2>
+            <div class="cheatsheet">
+                <ul>
+                    <li>🔍 <strong>Проверьте файл:</strong> называется ли он skill.md?</li>
+                    <li>📝 <strong>Проверьте инструкции:</strong> они конкретные?</li>
+                    <li>📋 <strong>Добавьте примеры:</strong> хотя бы 2-3</li>
+                    <li>🚫 <strong>Уберите лишнее:</strong> уберите_water, уточните задачу</li>
+                    <li>✅ <strong>Протестируйте:</strong> запустите на простом примере</li>
+                    <li>🔄 <strong>Итерируйте:</strong> улучшайте по результатам</li>
+                    <li>💾 <strong>Сохраняйте версии:</strong> копируйте файл перед изменениями</li>
+                    <li>📚 <strong>Смотрите примеры:</strong> изучите другие скиллы</li>
+                    <li>🤖 <strong>Попросите Claude:</strong> "Проверь мой skill.md и скажи, что улучшить"</li>
+                    <li>⚡ <strong>Начните заново:</strong> если совсем всё плохо — создайте новый файл с нуля</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>💡 Дополнительные советы</h2>
+            <ul>
+                <li><strong>Начинайте просто</strong> — первый скилл должен занимать 10-15 строк</li>
+                <li><strong>Тестируйте часто</strong> — проверяйте после каждого изменения</li>
+                <li><strong>Сохраняйте версии</strong> — копируйте файл: skill-v1.md, skill-v2.md</li>
+                <li><strong>Учитесь на примерах</strong> — смотрите другие скиллы в документации Claude</li>
+                <li><strong>Не бойтесь ошибок</strong> — это нормально! Каждый скилл улучшается с опытом</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>🎓 Что дальше?</h2>
+            <p>После создания первого скилла:</p>
+            <ol>
+                <li>Протестируйте на разных примерах</li>
+                <li>Улучшайте по результатам</li>
+                <li>Поделитесь с коллегами или друзьями</li>
+                <li>Создайте второй скилл для другой задачи!</li>
+            </ol>
+            <p><strong>Помните:</strong> Каждый скилл делает Claude лучше для конкретной задачи. Начните с простого, и вы быстро научитесь!</p>
+        </section>
+
+        <footer>
+            <p>Создано с помощью Claude Code • BOOST Intensive • 2026</p>
+            <p style="margin-top: 0.5rem;">
+                <a href="index.html" style="color: #667eea; text-decoration: none;">← Вернуться на главную страницу проекта</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Save checkbox state to localStorage
+        document.querySelectorAll('.checkbox input[type="checkbox"]').forEach(checkbox => {
+            const key = 'skill-guide-checkbox-' + checkbox.parentElement.textContent.trim().substring(0, 50);
+            const saved = localStorage.getItem(key);
+
+            if (saved === 'true') {
+                checkbox.checked = true;
+                checkbox.parentElement.classList.add('completed');
+            }
+
+            checkbox.addEventListener('change', () => {
+                localStorage.setItem(key, checkbox.checked);
+            });
+        });
+    </script>
+</body>
+</html>

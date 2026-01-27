@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BOOST Intensive - 30 Landing Page Variations</title>
+    <title>BOOST Intensive - AI Development Demo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -34,173 +34,243 @@
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 800;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .subtitle {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             opacity: 0.95;
             font-weight: 300;
+            margin-bottom: 0.5rem;
         }
 
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .stat-badge {
-            background: rgba(255, 255, 255, 0.2);
+        .ai-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(10px);
             padding: 0.5rem 1.5rem;
             border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-top: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
-        .grid {
+        .intro {
+            text-align: center;
+            color: white;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            line-height: 1.7;
+        }
+
+        .tasks-section {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
         }
 
-        .card {
+        @media (max-width: 1100px) {
+            .tasks-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .task-card {
             background: white;
-            border-radius: 16px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            display: block;
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
             position: relative;
             overflow: hidden;
         }
 
-        .card::before {
+        .task-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
+            height: 6px;
+        }
+
+        .task-card.task1::before {
             background: linear-gradient(90deg, #667eea, #764ba2);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
         }
 
-        .card:hover::before {
-            transform: scaleX(1);
+        .task-card.task2::before {
+            background: linear-gradient(90deg, #48bb78, #38a169);
         }
 
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .card-header {
+        .task-header {
             display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            margin-bottom: 1rem;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
         }
 
-        .card-number {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
+        .task-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            font-size: 1rem;
+            font-size: 1.8rem;
+            font-weight: 800;
             flex-shrink: 0;
         }
 
-        .card-title {
-            font-size: 1.25rem;
+        .task-card.task1 .task-number {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .task-card.task2 .task-number {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+        }
+
+        .task-title {
+            font-size: 1.8rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
             color: #1a202c;
         }
 
-        .card-style {
-            font-size: 0.875rem;
-            color: #718096;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .card-description {
-            font-size: 0.9rem;
+        .task-description {
             color: #4a5568;
-            line-height: 1.5;
-            margin-top: 0.75rem;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
         }
 
-        .card-arrow {
-            position: absolute;
-            bottom: 1.5rem;
-            right: 1.5rem;
-            width: 32px;
-            height: 32px;
-            background: #f7fafc;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            opacity: 0;
-        }
-
-        .card:hover .card-arrow {
-            opacity: 1;
-            transform: translateX(-4px);
-            background: linear-gradient(135deg, #667eea, #764ba2);
-        }
-
-        .card-arrow svg {
-            width: 16px;
-            height: 16px;
-            stroke: #4a5568;
-            transition: stroke 0.3s ease;
-        }
-
-        .card:hover .card-arrow svg {
-            stroke: white;
-        }
-
-        .categories {
+        .task-stats {
             display: flex;
             gap: 1rem;
-            margin-bottom: 2rem;
             flex-wrap: wrap;
-            justify-content: center;
+            margin-bottom: 1.5rem;
         }
 
-        .category-tag {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            color: white;
-            padding: 0.5rem 1rem;
+        .stat-badge-small {
+            background: #f7fafc;
+            padding: 0.4rem 0.8rem;
             border-radius: 8px;
-            font-size: 0.875rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #4a5568;
         }
 
-        .category-tag:hover {
-            background: rgba(255, 255, 255, 0.25);
+        .task-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .task-card.task1 .task-link {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .task-card.task1 .task-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .task-card.task2 .task-link {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+        }
+
+        .task-card.task2 .task-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(72, 187, 120, 0.4);
+        }
+
+        .demo-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .demo-section h2 {
+            font-size: 1.8rem;
+            color: #1a202c;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .landing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .mini-card {
+            background: #f7fafc;
+            border-radius: 12px;
+            padding: 1rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+        }
+
+        .mini-card:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+        }
+
+        .mini-card-number {
+            font-size: 0.75rem;
+            color: #667eea;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .mini-card-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #1a202c;
+        }
+
+        .mini-card-style {
+            font-size: 0.8rem;
+            color: #718096;
+            margin-top: 0.25rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .tech-item {
+            background: #edf2f7;
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #4a5568;
         }
 
         footer {
@@ -215,13 +285,31 @@
             text-decoration: underline;
         }
 
+        .highlight {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2rem;
             }
 
-            .grid {
+            .tasks-section {
                 grid-template-columns: 1fr;
+            }
+
+            .task-card {
+                padding: 1.5rem;
+            }
+
+            .task-title {
+                font-size: 1.4rem;
+            }
+
+            .landing-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
 
             body {
@@ -233,452 +321,271 @@
 <body>
     <div class="container">
         <header>
-            <h1>🚀 BOOST Landing Pages</h1>
-            <p class="subtitle">30 уникальных визуальных стилей для intensive курса программирования</p>
-            <div class="stats">
-                <div class="stat-badge">📄 30 Вариантов</div>
-                <div class="stat-badge">🎨 Уникальный дизайн</div>
-                <div class="stat-badge">📱 Адаптивный</div>
-                <div class="stat-badge">⚡ Production Ready</div>
-            </div>
+            <h1>🚀 BOOST Intensive</h1>
+            <p class="subtitle">AI Development Demo — Презентация возможностей Claude Code</p>
+            <div class="ai-badge">🤖 Создано с помощью Claude Code за один промпт</div>
         </header>
 
-        <div class="categories">
-            <div class="category-tag">Все (30)</div>
-            <div class="category-tag">Минимализм (3)</div>
-            <div class="category-tag">Яркие (5)</div>
-            <div class="category-tag">Ретро (4)</div>
-            <div class="category-tag">Современные (6)</div>
-            <div class="category-tag">Темные (3)</div>
-            <div class="category-tag">Художественные (5)</div>
-            <div class="category-tag">Профессиональные (4)</div>
+        <div class="intro">
+            <p>
+                Этот проект демонстрирует возможности <span class="highlight">AI-разработки</span> с помощью Claude Code.
+                Все задачи выполнены полностью искусственным интеллектом по простым текстовым инструкциям.
+                Ни одна строка кода не была написана человеком напрямую!
+            </p>
         </div>
 
-        <div class="grid">
-            <a href="boost-minimalist.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">1</div>
+        <div class="tasks-section">
+            <!-- Task 1 -->
+            <div class="task-card task1">
+                <div class="task-header">
+                    <div class="task-number">1</div>
+                    <h2 class="task-title">30 Лендингов BOOST</h2>
                 </div>
-                <h2 class="card-title">Minimalist</h2>
-                <p class="card-style">Modern Minimalist</p>
-                <p class="card-description">Чистый минимализм с акцентом на типографике и whitespace</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
+                <p class="task-description">
+                    Создание 30 уникальных вариантов лендинга intensive курса программирования BOOST в разных визуальных стилях.
+                    Каждый вариант полностью адаптивен и готов к production.
+                </p>
+                <div class="task-stats">
+                    <div class="stat-badge-small">📄 30 HTML страниц</div>
+                    <div class="stat-badge-small">🎨 30 уникальных стилей</div>
+                    <div class="stat-badge-small">📱 Fully Responsive</div>
+                    <div class="stat-badge-small">⚡ Production Ready</div>
                 </div>
-            </a>
+                <div class="tech-stack">
+                    <div class="tech-item">HTML5</div>
+                    <div class="tech-item">CSS3</div>
+                    <div class="tech-item">Google Fonts</div>
+                    <div class="tech-item">GitHub Pages</div>
+                </div>
+                <div style="margin-top: 1.5rem;">
+                    <a href="#landing-pages" class="task-link">
+                        🎨 Смотреть все 30 вариантов
+                    </a>
+                </div>
+            </div>
 
-            <a href="boost-brutalist.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">2</div>
+            <!-- Task 2 -->
+            <div class="task-card task2">
+                <div class="task-header">
+                    <div class="task-number">2</div>
+                    <h2 class="task-title">Гайд для новичка</h2>
                 </div>
-                <h2 class="card-title">Brutalist</h2>
-                <p class="card-style">Brutalist Architecture</p>
-                <p class="card-description">Бруталистский стиль с сырыми формами и контрастными цветами</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
+                <p class="task-description">
+                    Создание подробного гайда "Как сделать скилл в Claude Code" для людей, которые никогда не программировали.
+                    Простым языком, с примерами и чек-листами.
+                </p>
+                <div class="task-stats">
+                    <div class="stat-badge-small">📖 Пошаговая инструкция</div>
+                    <div class="stat-badge-small">✅ Чек-листы</div>
+                    <div class="stat-badge-small">⚠️ 5 типовых ошибок</div>
+                    <div class="stat-badge-small">💡 Шпаргалка</div>
                 </div>
-            </a>
+                <div class="tech-stack">
+                    <div class="tech-item">Документация</div>
+                    <div class="tech-item">Обучение</div>
+                    <div class="tech-item">Best Practices</div>
+                </div>
+                <div style="margin-top: 1.5rem;">
+                    <a href="how-to-create-skill.html" class="task-link">
+                        📚 Читать гайд
+                    </a>
+                </div>
+            </div>
+        </div>
 
-            <a href="boost-cyberpunk.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">3</div>
-                </div>
-                <h2 class="card-title">Cyberpunk</h2>
-                <p class="card-style">Sci-Fi / Cyberpunk</p>
-                <p class="card-description">Киберпанк эстетика с неоном и футуристическим дизайном</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+        <div class="demo-section" id="landing-pages">
+            <h2>🎨 Все 30 лендингов — Нажмите чтобы открыть</h2>
+            <div class="landing-grid">
+                <a href="boost-minimalist.html" class="mini-card">
+                    <div class="mini-card-number">#01</div>
+                    <div class="mini-card-title">Minimalist</div>
+                    <div class="mini-card-style">Modern Minimalist</div>
+                </a>
 
-            <a href="boost-japanese.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">4</div>
-                </div>
-                <h2 class="card-title">Japanese</h2>
-                <p class="card-style">Japanese Design</p>
-                <p class="card-description">Японский минимализм с иероглифами и восточной эстетикой</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+                <a href="boost-brutalist.html" class="mini-card">
+                    <div class="mini-card-number">#02</div>
+                    <div class="mini-card-title">Brutalist</div>
+                    <div class="mini-card-style">Brutalist Architecture</div>
+                </a>
 
-            <a href="boost-retro80s.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">5</div>
-                </div>
-                <h2 class="card-title">Retro 80s</h2>
-                <p class="card-style">Synthwave / Retro</p>
-                <p class="card-description">Ретро 80-х с синтвейв эстетикой и неоновыми градиентами</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+                <a href="boost-cyberpunk.html" class="mini-card">
+                    <div class="mini-card-number">#03</div>
+                    <div class="mini-card-title">Cyberpunk</div>
+                    <div class="mini-card-style">Sci-Fi / Cyberpunk</div>
+                </a>
 
-            <a href="boost-artdeco.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">6</div>
-                </div>
-                <h2 class="card-title">Art Deco</h2>
-                <p class="card-style">Art Deco 1920s</p>
-                <p class="card-description">Арт-деко стиль 1920-х с геометрическими узорами и золотом</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+                <a href="boost-japanese.html" class="mini-card">
+                    <div class="mini-card-number">#04</div>
+                    <div class="mini-card-title">Japanese</div>
+                    <div class="mini-card-style">Japanese Design</div>
+                </a>
 
-            <a href="boost-glassmorphism.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">7</div>
-                </div>
-                <h2 class="card-title">Glassmorphism</h2>
-                <p class="card-style">Glass Effect</p>
-                <p class="card-description">Стекломорфизм с размытым фоном и прозрачными элементами</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+                <a href="boost-retro80s.html" class="mini-card">
+                    <div class="mini-card-number">#05</div>
+                    <div class="mini-card-title">Retro 80s</div>
+                    <div class="mini-card-style">Synthwave / Retro</div>
+                </a>
 
-            <a href="boost-neobrutalism.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">8</div>
-                </div>
-                <h2 class="card-title">Neobrutalism</h2>
-                <p class="card-style">Neo-Brutalist</p>
-                <p class="card-description">Необрутализм с яркими цветами и жирными обводками</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+                <a href="boost-artdeco.html" class="mini-card">
+                    <div class="mini-card-number">#06</div>
+                    <div class="mini-card-title">Art Deco</div>
+                    <div class="mini-card-style">Art Deco 1920s</div>
+                </a>
 
-            <a href="boost-nordic.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">9</div>
-                </div>
-                <h2 class="card-title">Nordic</h2>
-                <p class="card-style">Scandinavian Design</p>
-                <p class="card-description">Скандинавский стиль с уютными текстурами и натуральными цветами</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+                <a href="boost-glassmorphism.html" class="mini-card">
+                    <div class="mini-card-number">#07</div>
+                    <div class="mini-card-title">Glassmorphism</div>
+                    <div class="mini-card-style">Glass Effect</div>
+                </a>
 
-            <a href="boost-gradient.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">10</div>
-                </div>
-                <h2 class="card-title">Gradient</h2>
-                <p class="card-style">Vibrant Gradients</p>
-                <p class="card-description">Яркие градиенты с современным динамичным дизайном</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+                <a href="boost-neobrutalism.html" class="mini-card">
+                    <div class="mini-card-number">#08</div>
+                    <div class="mini-card-title">Neobrutalism</div>
+                    <div class="mini-card-style">Neo-Brutalist</div>
+                </a>
 
-            <a href="boost-darktech.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">11</div>
-                </div>
-                <h2 class="card-title">Dark Tech</h2>
-                <p class="card-style">Dark Technology</p>
-                <p class="card-description">Темная технологичная тема с акцентами синего</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+                <a href="boost-nordic.html" class="mini-card">
+                    <div class="mini-card-number">#09</div>
+                    <div class="mini-card-title">Nordic</div>
+                    <div class="mini-card-style">Scandinavian Design</div>
+                </a>
 
-            <a href="boost-bauhaus.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">12</div>
-                </div>
-                <h2 class="card-title">Bauhaus</h2>
-                <p class="card-style">Bauhaus Style</p>
-                <p class="card-description">Баухаус с первичными цветами и геометрическими формами</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+                <a href="boost-gradient.html" class="mini-card">
+                    <div class="mini-card-number">#10</div>
+                    <div class="mini-card-title">Gradient</div>
+                    <div class="mini-card-style">Vibrant Gradients</div>
+                </a>
 
-            <a href="boost-memphis.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">13</div>
-                </div>
-                <h2 class="card-title">Memphis</h2>
-                <p class="card-style">Memphis Design</p>
-                <p class="card-description">Мемфис дизайн 80-х с узорами и игривыми элементами</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+                <a href="boost-darktech.html" class="mini-card">
+                    <div class="mini-card-number">#11</div>
+                    <div class="mini-card-title">Dark Tech</div>
+                    <div class="mini-card-style">Dark Technology</div>
+                </a>
 
-            <a href="boost-corporate.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">14</div>
-                </div>
-                <h2 class="card-title">Corporate</h2>
-                <p class="card-style">Corporate Clean</p>
-                <p class="card-description">Корпоративный стиль с профессиональным минималистичным дизайном</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+                <a href="boost-bauhaus.html" class="mini-card">
+                    <div class="mini-card-number">#12</div>
+                    <div class="mini-card-title">Bauhaus</div>
+                    <div class="mini-card-style">Bauhaus Style</div>
+                </a>
 
-            <a href="boost-organic.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">15</div>
-                </div>
-                <h2 class="card-title">Organic</h2>
-                <p class="card-style">Organic Nature</p>
-                <p class="card-description">Органическая природа с зеленью и натуральными материалами</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+                <a href="boost-memphis.html" class="mini-card">
+                    <div class="mini-card-number">#13</div>
+                    <div class="mini-card-title">Memphis</div>
+                    <div class="mini-card-style">Memphis Design</div>
+                </a>
 
-            <a href="boost-popart.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">16</div>
-                </div>
-                <h2 class="card-title">Pop Art</h2>
-                <p class="card-style">Warhol / Lichtenstein</p>
-                <p class="card-description">Поп-арт с яркими цветами и комиксным стилем</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+                <a href="boost-corporate.html" class="mini-card">
+                    <div class="mini-card-number">#14</div>
+                    <div class="mini-card-title">Corporate</div>
+                    <div class="mini-card-style">Corporate Clean</div>
+                </a>
 
-            <a href="boost-pastel.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">17</div>
-                </div>
-                <h2 class="card-title">Pastel</h2>
-                <p class="card-style">Soft Pastel Colors</p>
-                <p class="card-description">Мягкие пастельные тона с мечтательной эстетикой</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+                <a href="boost-organic.html" class="mini-card">
+                    <div class="mini-card-number">#15</div>
+                    <div class="mini-card-title">Organic</div>
+                    <div class="mini-card-style">Organic Nature</div>
+                </a>
 
-            <a href="boost-typography.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">18</div>
-                </div>
-                <h2 class="card-title">Typography</h2>
-                <p class="card-style">Bold Typography</p>
-                <p class="card-description">Смелая типографика с крупными заголовками и текстом</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+                <a href="boost-popart.html" class="mini-card">
+                    <div class="mini-card-number">#16</div>
+                    <div class="mini-card-title">Pop Art</div>
+                    <div class="mini-card-style">Warhol / Lichtenstein</div>
+                </a>
 
-            <a href="boost-material.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">19</div>
-                </div>
-                <h2 class="card-title">Material</h2>
-                <p class="card-style">Material Design</p>
-                <p class="card-description">Google Material Design с тенями и анимациями</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+                <a href="boost-pastel.html" class="mini-card">
+                    <div class="mini-card-number">#17</div>
+                    <div class="mini-card-title">Pastel</div>
+                    <div class="mini-card-style">Soft Pastel Colors</div>
+                </a>
 
-            <a href="boost-flat.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">20</div>
-                </div>
-                <h2 class="card-title">Flat 2.0</h2>
-                <p class="card-style">Flat Design 2.0</p>
-                <p class="card-description">Плоский дизайн 2.0 с минималистичными иконками и цветами</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+                <a href="boost-typography.html" class="mini-card">
+                    <div class="mini-card-number">#18</div>
+                    <div class="mini-card-title">Typography</div>
+                    <div class="mini-card-style">Bold Typography</div>
+                </a>
 
-            <a href="boost-industrial.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">21</div>
-                </div>
-                <h2 class="card-title">Industrial</h2>
-                <p class="card-style">Industrial Design</p>
-                <p class="card-description">Индустриальный стиль с металлическими текстурами</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+                <a href="boost-material.html" class="mini-card">
+                    <div class="mini-card-number">#19</div>
+                    <div class="mini-card-title">Material</div>
+                    <div class="mini-card-style">Material Design</div>
+                </a>
 
-            <a href="boost-luxury.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">22</div>
-                </div>
-                <h2 class="card-title">Luxury</h2>
-                <p class="card-style">Elegant Luxury</p>
-                <p class="card-description">Роскошный элегантный стиль с золотыми акцентами</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+                <a href="boost-flat.html" class="mini-card">
+                    <div class="mini-card-number">#20</div>
+                    <div class="mini-card-title">Flat 2.0</div>
+                    <div class="mini-card-style">Flat Design 2.0</div>
+                </a>
 
-            <a href="boost-geometric.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">23</div>
-                </div>
-                <h2 class="card-title">Geometric</h2>
-                <p class="card-style">Geometric Abstract</p>
-                <p class="card-description">Геометрический абстрактный дизайн с формами и паттернами</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+                <a href="boost-industrial.html" class="mini-card">
+                    <div class="mini-card-number">#21</div>
+                    <div class="mini-card-title">Industrial</div>
+                    <div class="mini-card-style">Industrial Design</div>
+                </a>
 
-            <a href="boost-monochrome.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">24</div>
-                </div>
-                <h2 class="card-title">Monochrome</h2>
-                <p class="card-style">Black & White</p>
-                <p class="card-description">Монохромный черно-белый дизайн с высокой контрастностью</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+                <a href="boost-luxury.html" class="mini-card">
+                    <div class="mini-card-number">#22</div>
+                    <div class="mini-card-title">Luxury</div>
+                    <div class="mini-card-style">Elegant Luxury</div>
+                </a>
 
-            <a href="boost-neon.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">25</div>
-                </div>
-                <h2 class="card-title">Neon</h2>
-                <p class="card-style">Neon Glow</p>
-                <p class="card-description">Неоновое свечение на темном фоне с яркими эффектами</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+                <a href="boost-geometric.html" class="mini-card">
+                    <div class="mini-card-number">#23</div>
+                    <div class="mini-card-title">Geometric</div>
+                    <div class="mini-card-style">Geometric Abstract</div>
+                </a>
 
-            <a href="boost-pixel.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">26</div>
-                </div>
-                <h2 class="card-title">Pixel Art</h2>
-                <p class="card-style">Retro Pixel Art</p>
-                <p class="card-description">Пиксель-арт в стиле ретро игр 8-битной эпохи</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+                <a href="boost-monochrome.html" class="mini-card">
+                    <div class="mini-card-number">#24</div>
+                    <div class="mini-card-title">Monochrome</div>
+                    <div class="mini-card-style">Black & White</div>
+                </a>
 
-            <a href="boost-watercolor.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">27</div>
-                </div>
-                <h2 class="card-title">Watercolor</h2>
-                <p class="card-style">Watercolor Painting</p>
-                <p class="card-description">Акварельная живопись с мягкими переходами и художественным стилем</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+                <a href="boost-neon.html" class="mini-card">
+                    <div class="mini-card-number">#25</div>
+                    <div class="mini-card-title">Neon</div>
+                    <div class="mini-card-style">Neon Glow</div>
+                </a>
 
-            <a href="boost-holographic.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">28</div>
-                </div>
-                <h2 class="card-title">Holographic</h2>
-                <p class="card-style">Iridescent Holo</p>
-                <p class="card-description">Голографические эффекты с переливающимися цветами радуги</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+                <a href="boost-pixel.html" class="mini-card">
+                    <div class="mini-card-number">#26</div>
+                    <div class="mini-card-title">Pixel Art</div>
+                    <div class="mini-card-style">Retro Pixel Art</div>
+                </a>
 
-            <a href="boost-editorial.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">29</div>
-                </div>
-                <h2 class="card-title">Editorial</h2>
-                <p class="card-style">Magazine Layout</p>
-                <p class="card-description">Редакционный журнальный стиль с классической типографикой</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+                <a href="boost-watercolor.html" class="mini-card">
+                    <div class="mini-card-number">#27</div>
+                    <div class="mini-card-title">Watercolor</div>
+                    <div class="mini-card-style">Watercolor Painting</div>
+                </a>
 
-            <a href="boost-vintage.html" class="card">
-                <div class="card-header">
-                    <div class="card-number">30</div>
-                </div>
-                <h2 class="card-title">Vintage</h2>
-                <p class="card-style">Vintage Paper</p>
-                <p class="card-description">Винтажный стиль состаренной бумаги с машинописным шрифтом</p>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </a>
+                <a href="boost-holographic.html" class="mini-card">
+                    <div class="mini-card-number">#28</div>
+                    <div class="mini-card-title">Holographic</div>
+                    <div class="mini-card-style">Iridescent Holo</div>
+                </a>
+
+                <a href="boost-editorial.html" class="mini-card">
+                    <div class="mini-card-number">#29</div>
+                    <div class="mini-card-title">Editorial</div>
+                    <div class="mini-card-style">Magazine Layout</div>
+                </a>
+
+                <a href="boost-vintage.html" class="mini-card">
+                    <div class="mini-card-number">#30</div>
+                    <div class="mini-card-title">Vintage</div>
+                    <div class="mini-card-style">Vintage Paper</div>
+                </a>
+            </div>
         </div>
 
         <footer>
-            <p>Создано для BOOST Intensive | <a href="https://github.com/osipov-denis/boost-landing-page" target="_blank">GitHub Repository</a></p>
-            <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">30 уникальных лендингов • Production Ready • Fully Responsive</p>
+            <p>💖 Создано с помощью <strong>Claude Code</strong> • BOOST Intensive • 2026</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">
+                Репозиторий: <a href="https://github.com/osipov-denis/boost-landing-page" target="_blank">github.com/osipov-denis/boost-landing-page</a>
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.7;">
+                Весь код, дизайн и контент созданы искусственным интеллектом за один промпт
+            </p>
         </footer>
     </div>
 </body>
