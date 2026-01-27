@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOST — Japanese Minimalist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c2c2c;
+            --secondary: #8b7355;
+            --accent: #c5a059;
+            --background: #f7f4ef;
+            --surface: #ffffff;
+            --border: #d4cfc7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: var(--background);
+            color: var(--primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(247, 244, 239, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--primary);
+            letter-spacing: 0.3em;
+        }
+
+        .header-cta {
+            padding: 0.6rem 1.5rem;
+            background: var(--primary);
+            color: var(--surface);
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            transition: all 0.3s ease;
+        }
+
+        .header-cta:hover {
+            background: var(--accent);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 10rem 3rem 5rem;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '昇';
+            position: absolute;
+            top: 10%;
+            right: 8%;
+            font-family: 'Noto Serif JP', serif;
+            font-size: 20rem;
+            font-weight: 200;
+            color: var(--border);
+            opacity: 0.15;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .hero-date {
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            color: var(--secondary);
+            margin-bottom: 3rem;
+            writing-mode: vertical-rl;
+            height: 150px;
+        }
+
+        .hero h1 {
+            font-family: 'Noto Serif JP', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 400;
+            line-height: 1.6;
+            max-width: 800px;
+            margin-bottom: 3rem;
+            letter-spacing: 0.1em;
+        }
+
+        .hero-description {
+            font-size: 0.9375rem;
+            font-weight: 300;
+            color: var(--secondary);
+            max-width: 550px;
+            line-height: 2.2;
+            margin-bottom: 3rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .btn-primary {
+            padding: 1rem 2.5rem;
+            background: var(--primary);
+            color: var(--surface);
+            text-decoration: none;
+            font-size: 0.8125rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent);
+        }
+
+        .btn-secondary {
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.8125rem;
+            font-weight: 400;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+        }
+
+        /* Sections */
+        .section-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 8rem 3rem;
+        }
+
+        .section-label {
+            font-size: 0.6875rem;
+            font-weight: 400;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .section-title {
+            font-family: 'Noto Serif JP', serif;
+            font-size: clamp(1.75rem, 3vw, 2.25rem);
+            font-weight: 400;
+            margin-bottom: 4rem;
+            letter-spacing: 0.15em;
+            text-align: center;
+        }
+
+        /* Expert */
+        .expert {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .expert-content {
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .expert-name {
+            font-family: 'Noto Serif JP', serif;
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 400;
+            margin-bottom: 2rem;
+            letter-spacing: 0.1em;
+        }
+
+        .expert-description {
+            font-size: 0.875rem;
+            font-weight: 300;
+            color: var(--secondary);
+            line-height: 2.2;
+        }
+
+        /* Audience */
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+        }
+
+        .audience-item {
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .audience-item:hover {
+            border-color: var(--accent);
+        }
+
+        .audience-item h3 {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .audience-item p {
+            font-size: 0.8125rem;
+            font-weight: 300;
+            color: var(--secondary);
+            line-height: 2;
+        }
+
+        /* Program */
+        .program {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .program-list {
+            list-style: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .program-item {
+            display: flex;
+            align-items: baseline;
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .program-number {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--accent);
+            margin-right: 2.5rem;
+            line-height: 1;
+            min-width: 60px;
+        }
+
+        .program-text {
+            font-size: 0.875rem;
+            font-weight: 300;
+            color: var(--secondary);
+            line-height: 2;
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--surface);
+            padding: 3rem 2rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--accent);
+        }
+
+        .pricing-card.featured {
+            background: var(--primary);
+            color: var(--surface);
+        }
+
+        .pricing-name {
+            font-size: 0.6875rem;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+        }
+
+        .pricing-card.featured .pricing-name {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .pricing-price {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            letter-spacing: 0.05em;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-feature {
+            font-size: 0.8125rem;
+            font-weight: 300;
+            padding: 0.75rem 0;
+            color: var(--secondary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pricing-card.featured .pricing-feature {
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .pricing-cta {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary);
+            color: var(--surface);
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-cta:hover {
+            background: var(--accent);
+        }
+
+        .pricing-card.featured .pricing-cta {
+            background: var(--surface);
+            color: var(--primary);
+        }
+
+        /* Spots */
+        .spots {
+            padding: 6rem 3rem;
+            background: var(--surface);
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .spots-number {
+            font-family: 'Noto Serif JP', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 300;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .spots-text {
+            font-size: 0.75rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            color: var(--secondary);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 3rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-text {
+            font-size: 0.6875rem;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            color: var(--secondary);
+        }
+
+        /* Decorative elements */
+        .vertical-text {
+            writing-mode: vertical-rl;
+            position: fixed;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'Noto Serif JP', serif;
+            font-size: 0.75rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            color: var(--border);
+            pointer-events: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 1rem 1.5rem;
+            }
+
+            .hero {
+                padding: 8rem 1.5rem 4rem;
+            }
+
+            .hero::before {
+                display: none;
+            }
+
+            .hero-date {
+                writing-mode: horizontal-tb;
+                height: auto;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .section-wrapper {
+                padding: 5rem 1.5rem;
+            }
+
+            .audience-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .program-item {
+                flex-direction: column;
+            }
+
+            .program-number {
+                margin-bottom: 1rem;
+            }
+
+            .vertical-text {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="vertical-text">BOOST 二〇二六</div>
+
+    <header>
+        <div class="header-content">
+            <div class="logo">BOOST</div>
+            <a href="#pricing" class="header-cta">申し込む</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-date">🔥 7 — 15 三月 2026</div>
+        <h1>ヴァイブコーディング<br>BOOST<br>AI製品創造集中講座</h1>
+        <p class="hero-description">AIを使って10倍速く製品を作ることを学ぶ。市場調査、製品要件、仕様書、ランディングページ、MVPを自ら作成する。</p>
+        <div class="hero-cta">
+            <a href="#pricing" class="btn-primary">料金を見る</a>
+            <a href="#program" class="btn-secondary">プログラム</a>
+        </div>
+    </section>
+
+    <section class="expert">
+        <div class="section-wrapper">
+            <div class="expert-content">
+                <div class="section-label">講師</div>
+                <h2 class="expert-name">ヴァニャ・ザメシン</h2>
+                <p class="expert-description">CIS諸国でプロダクトマネージャー第一位の専門家。メタ創業者。最も人気のあるプロダクトコース創作者で、12,000人の専門家が受講。</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="audience">
+        <div class="section-wrapper">
+            <div class="section-label">対象者</div>
+            <h2 class="section-title">あなたの道</h2>
+            <div class="audience-grid">
+                <div class="audience-item">
+                    <h3>創業者</h3>
+                    <p>数日で仮説検証。チームを待たずに即実行。</p>
+                </div>
+                <div class="audience-item">
+                    <h3>経営者</h3>
+                    <p>週末で自動化。開発者に依存しない。</p>
+                </div>
+                <div class="audience-item">
+                    <h3>就職起業</h3>
+                    <p>週末でMVP。リスクなしで製品開発。</p>
+                </div>
+                <div class="audience-item">
+                    <h3>プロダクト転身</h3>
+                    <p>実働ポートフォリオ。悪循環からの脱出。</p>
+                </div>
+                <div class="audience-item">
+                    <h3>プロダクトマネージャー</h3>
+                    <p>AIを実践で理解。理論ではなく純粋な経験。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="program">
+        <div class="section-wrapper">
+            <div class="section-label">プログラム</div>
+            <h2 class="section-title">六回のワークショップ</h2>
+            <ul class="program-list">
+                <li class="program-item">
+                    <span class="program-number">零</span>
+                    <span class="program-text">ツール導入。最初のランディングページ。PRDと製品要件。</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">壱</span>
+                    <span class="program-text">プロトタイピング。機能拡張。初デプロイ。</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">弐</span>
+                    <span class="program-text">データ収集。スクレイピング。市場分析。ジョブ、セグメント、競合。</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">参</span>
+                    <span class="program-text">文字起こし。プロセス自動化。MCP統合。</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">肆</span>
+                    <span class="program-text">プロダクションコード。QA・UXテスト。リリス準備。</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">伍</span>
+                    <span class="program-text">最終デプロイ。ドメイン。本番稼働。総括。</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="section-wrapper">
+            <div class="section-label">料金プラン</div>
+            <h2 class="section-title">選択</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-name">集中</div>
+                    <div class="pricing-price">49 900₽</div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">6回ワークショップ録画</li>
+                        <li class="pricing-feature">プロンプトとテンプレート</li>
+                        <li class="pricing-feature">Telegramグループ</li>
+                        <li class="pricing-feature">6回ライブワークショップ</li>
+                        <li class="pricing-feature">自身のアイデアで実践</li>
+                    </ul>
+                    <a href="#" class="pricing-cta">選択</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-name">サポート付き</div>
+                    <div class="pricing-price">79 900₽</div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">「集中」プランの全内容</li>
+                        <li class="pricing-feature">専属チューター</li>
+                        <li class="pricing-feature">ヴァニャからのフィードバック</li>
+                        <li class="pricing-feature">24/7サポート</li>
+                        <li class="pricing-feature">終了後3週間のサポート</li>
+                        <li class="pricing-feature">AURA Founder 3ヶ月</li>
+                    </ul>
+                    <a href="#" class="pricing-cta">選択</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="spots">
+        <div class="spots-number">58</div>
+        <div class="spots-text">七十席中残席</div>
+    </section>
+
+    <footer>
+        <p class="footer-text">© 2026 BOOST. Japanese Minimalist Vibe Coding.</p>
+    </footer>
+</body>
+</html>

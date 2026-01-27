@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOST — Вайбкодинг интенсив</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff0000;
+            --secondary: #0000ff;
+            --yellow: #ffff00;
+            --background: #ffffff;
+            --text: #000000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        .marquee {
+            background: var(--primary);
+            color: var(--yellow);
+            padding: 0.5rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Header */
+        header {
+            border-bottom: 4px solid var(--text);
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: var(--background);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            background: var(--secondary);
+            color: var(--yellow);
+            padding: 0.25rem 0.5rem;
+            transform: rotate(-2deg);
+        }
+
+        .header-cta {
+            background: var(--text);
+            color: var(--background);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            border: 3px solid var(--text);
+            transition: all 0.1s ease;
+        }
+
+        .header-cta:hover {
+            background: var(--yellow);
+            color: var(--text);
+            transform: translate(-4px, -4px);
+            box-shadow: 4px 4px 0 var(--primary);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 6rem 2rem;
+            background: repeating-linear-gradient(
+                0deg,
+                var(--background),
+                var(--background) 49px,
+                var(--text) 49px,
+                var(--text) 50px
+            );
+        }
+
+        .hero-content {
+            background: var(--background);
+            border: 4px solid var(--text);
+            padding: 4rem 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 12px 12px 0 var(--primary);
+        }
+
+        .hero-date {
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            background: var(--primary);
+            color: var(--yellow);
+            padding: 0.5rem 1rem;
+            display: inline-block;
+            transform: rotate(1deg);
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 0.95;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-brutal {
+            padding: 1.25rem 2.5rem;
+            background: var(--text);
+            color: var(--background);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            border: 3px solid var(--text);
+            transition: all 0.1s ease;
+        }
+
+        .btn-brutal:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 4px 4px 0 var(--secondary);
+        }
+
+        .btn-brutal.secondary {
+            background: var(--background);
+            color: var(--text);
+        }
+
+        .btn-brutal.secondary:hover {
+            background: var(--yellow);
+        }
+
+        /* Expert */
+        .expert {
+            padding: 6rem 2rem;
+            background: var(--secondary);
+            color: var(--yellow);
+        }
+
+        .expert-content {
+            max-width: 900px;
+            margin: 0 auto;
+            border: 4px solid var(--yellow);
+            padding: 3rem;
+        }
+
+        .expert-label {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .expert-label::before {
+            content: '★';
+            font-size: 1.5rem;
+        }
+
+        .expert-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .expert-description {
+            font-size: 1.0625rem;
+            line-height: 1.8;
+        }
+
+        /* Audience */
+        .audience {
+            padding: 6rem 2rem;
+            background: var(--text);
+            color: var(--background);
+        }
+
+        .audience-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title-brutal {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title-brutal::after {
+            content: '';
+            flex: 1;
+            height: 4px;
+            background: var(--primary);
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .audience-item {
+            background: var(--background);
+            color: var(--text);
+            padding: 2rem;
+            border: 3px solid var(--primary);
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .audience-item::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: -8px;
+            bottom: -8px;
+            background: var(--yellow);
+            z-index: -1;
+            transition: all 0.2s ease;
+        }
+
+        .audience-item:hover::before {
+            top: 4px;
+            left: 4px;
+            right: -4px;
+            bottom: -4px;
+        }
+
+        .audience-item h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            color: var(--primary);
+        }
+
+        .audience-item p {
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+
+        /* Program */
+        .program {
+            padding: 6rem 2rem;
+            background: var(--yellow);
+        }
+
+        .program-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .program-list {
+            list-style: none;
+            counter-reset: program-counter;
+        }
+
+        .program-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 2rem;
+            background: var(--background);
+            border: 3px solid var(--text);
+            margin-bottom: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .program-item:hover {
+            transform: translate(8px, 8px);
+            box-shadow: -8px -8px 0 var(--primary);
+        }
+
+        .program-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-right: 2rem;
+            line-height: 1;
+            min-width: 80px;
+        }
+
+        .program-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            padding-top: 0.5rem;
+        }
+
+        /* Pricing */
+        .pricing {
+            padding: 6rem 2rem;
+            background: repeating-linear-gradient(
+                45deg,
+                var(--primary),
+                var(--primary) 10px,
+                var(--yellow) 10px,
+                var(--yellow) 20px
+            );
+        }
+
+        .pricing-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: var(--background);
+            border: 4px solid var(--text);
+            padding: 0;
+            transition: all 0.2s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translate(-8px, -8px);
+            box-shadow: 8px 8px 0 var(--secondary);
+        }
+
+        .pricing-header {
+            background: var(--text);
+            color: var(--background);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .pricing-name {
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .pricing-price {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3.5rem;
+            line-height: 1;
+        }
+
+        .pricing-features {
+            list-style: none;
+            padding: 2rem;
+        }
+
+        .pricing-feature {
+            font-size: 0.9375rem;
+            padding: 0.75rem 0;
+            border-bottom: 2px solid var(--text);
+        }
+
+        .pricing-feature:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-cta {
+            display: block;
+            padding: 1.5rem;
+            background: var(--secondary);
+            color: var(--yellow);
+            text-align: center;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+        }
+
+        .pricing-cta:hover {
+            background: var(--primary);
+            color: var(--background);
+        }
+
+        /* Spots */
+        .spots {
+            padding: 4rem 2rem;
+            background: var(--text);
+            color: var(--background);
+            text-align: center;
+            border-top: 4px solid var(--primary);
+        }
+
+        .spots-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(4rem, 12vw, 10rem);
+            line-height: 1;
+            color: var(--primary);
+            text-shadow: 4px 4px 0 var(--yellow);
+        }
+
+        .spots-text {
+            font-size: 1.125rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem;
+            background: var(--background);
+            text-align: center;
+            border-top: 4px solid var(--text);
+        }
+
+        .footer-text {
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* Glitch effect for title */
+        .hero h1 {
+            position: relative;
+        }
+
+        .hero h1::before,
+        .hero h1::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+
+        .hero h1::before {
+            color: var(--primary);
+            animation: glitch-1 0.3s infinite linear alternate-reverse;
+        }
+
+        .hero h1::after {
+            color: var(--secondary);
+            animation: glitch-2 0.3s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-1 {
+            0% { clip-path: inset(20% 0 30% 0); transform: translate(-2px, 2px); }
+            100% { clip-path: inset(50% 0 20% 0); transform: translate(2px, -2px); }
+        }
+
+        @keyframes glitch-2 {
+            0% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -2px); }
+            100% { clip-path: inset(10% 0 60% 0); transform: translate(-2px, 2px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .header-cta {
+                padding: 0.75rem 1rem;
+                font-size: 0.75rem;
+            }
+
+            .audience-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .program-item {
+                flex-direction: column;
+            }
+
+            .program-number {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="marquee">
+        <div class="marquee-content">
+            🔥 7-15 МАРТ 2026 • ВАЙБКОДИНГ ИНТЕНСИВ • СОЗДАВАЙ ПРОДУКТЫ С AI • 58 МЕСТ ИЗ 70 • 🔥 7-15 МАРТ 2026 • ВАЙБКОДИНГ ИНТЕНСИВ • СОЗДАВАЙ ПРОДУКТЫ С AI • 58 МЕСТ ИЗ 70 •
+        </div>
+    </div>
+
+    <header>
+        <div class="logo">BOOST</div>
+        <a href="#pricing" class="header-cta">КУПИТЬ →</a>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-date">🔥 7 — 15 МАРТ 2026</div>
+            <h1 data-text="ВАЙБКОДИНГ КУРС BOOST — ИНТЕНСИВ ПО СОЗДАНИЮ ПРОДУКТОВ С AI">ВАЙБКОДИНГ КУРС<br>BOOST — ИНТЕНСИВ<br>ПО СОЗДАНИЮ ПРОДУКТОВ<br>С AI</h1>
+            <p class="hero-description">Научись создавать продукты в 10 раз быстрее с нейросетями. Исследуй рынок, пиши продуктовые требования и ТЗ, создавай лендинги и MVP своего продукта. Не зависи от разработчиков, дизайнеров, аналитиков.</p>
+            <div class="hero-cta">
+                <a href="#pricing" class="btn-brutal">Смотреть тарифы</a>
+                <a href="#program" class="btn-brutal secondary">Программа</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="expert">
+        <div class="expert-content">
+            <div class="expert-label">ЭКСПЕРТ</div>
+            <h2 class="expert-name">Ваня Замесин</h2>
+            <p class="expert-description">Эксперт №1 среди менеджеров продукта в СНГ последние четыре года. Основатель Меты — сервиса подбора психотерапевтов, проданного Profi.ru. Создатель самого популярного курса по продукту в СНГ, который прошли 12 000 собственников и специалистов.</p>
+        </div>
+    </section>
+
+    <section class="audience">
+        <div class="audience-content">
+            <h2 class="section-title-brutal">Для кого</h2>
+            <div class="audience-grid">
+                <div class="audience-item">
+                    <h3>Фаундер</h3>
+                    <p>После провалов с новой идеей. Проверяй гипотезы за дни. Не зависи от команды.</p>
+                </div>
+                <div class="audience-item">
+                    <h3>Бизнес</h3>
+                    <p>Устал зависеть от разработчиков. Автоматизация за выходные, не полгода.</p>
+                </div>
+                <div class="audience-item">
+                    <h3>Из найма</h3>
+                    <p>MVP за выходные без риска. Свобода создавать с безопасностью.</p>
+                </div>
+                <div class="audience-item">
+                    <h3>В продукт</h3>
+                    <p>Портфолио из работающих продуктов. Выход из «нет опыта — нет работы».</p>
+                </div>
+                <div class="audience-item">
+                    <h3>Продакт</h3>
+                    <p>Пойми AI на практике. Не теория, а реальный опыт создания продуктов.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="program" id="program">
+        <div class="program-content">
+            <h2 class="section-title-brutal" style="color: var(--text);">Программа</h2>
+            <ul class="program-list">
+                <li class="program-item">
+                    <span class="program-number">0</span>
+                    <span class="program-text">Установка Cursor и Claude Code. Первый лендинг. Продуктовые требования и PRD.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">1</span>
+                    <span class="program-text">Прототип продукта. Доработка функциональности. Деплой в продакшн.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">2</span>
+                    <span class="program-text">Парсинг сайтов, анализ рынка. Сегменты, Jobs, конкуренты, цены, тренды.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">3</span>
+                    <span class="program-text">Транскрибация созвонов. Автоматизация процессов. MCP интеграции.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">4</span>
+                    <span class="program-text">Продакшн-код приложения. QA-тесты и UX-тесты с Claude Code.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">5</span>
+                    <span class="program-text">Финальный деплой. Домен. Запуск. Итоги и следующая страница.</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="pricing-content">
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <div class="pricing-name">Интенсив</div>
+                        <div class="pricing-price">49 900₽</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">→ Записи 6 воркшопов</li>
+                        <li class="pricing-feature">→ Промпты + шаблоны</li>
+                        <li class="pricing-feature">→ Telegram-чат</li>
+                        <li class="pricing-feature">→ 6 live воркшопов</li>
+                        <li class="pricing-feature">→ Работа над своей идеей</li>
+                    </ul>
+                    <a href="#" class="pricing-cta">ВЫБРАТЬ →</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header" style="background: var(--primary);">
+                        <div class="pricing-name">С поддержкой</div>
+                        <div class="pricing-price">79 900₽</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">→ Всё из «Интенсив»</li>
+                        <li class="pricing-feature">→ Персональный куратор</li>
+                        <li class="pricing-feature">→ Фидбэк от Вани Замесина</li>
+                        <li class="pricing-feature">→ Поддержка 24/7</li>
+                        <li class="pricing-feature">→ 3 недели после</li>
+                        <li class="pricing-feature">→ AURA Founder 3 мес.</li>
+                    </ul>
+                    <a href="#" class="pricing-cta">ВЫБРАТЬ →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="spots">
+        <div class="spots-number">58</div>
+        <div class="spots-text">МЕСТ ОСТАЛОСЬ ИЗ 70</div>
+    </section>
+
+    <footer>
+        <p class="footer-text">© 2026 BOOST // ВАЙБКОДИНГ ИНТЕНСИВ</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOST — Вайбкодинг интенсив</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #666;
+            --accent: #c9a962;
+            --background: #fafafa;
+            --surface: #ffffff;
+            --border: #e8e8e8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--background);
+            color: var(--primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(250, 250, 250, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--primary);
+        }
+
+        .header-cta {
+            padding: 0.75rem 2rem;
+            background: var(--primary);
+            color: var(--surface);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: all 0.3s ease;
+        }
+
+        .header-cta:hover {
+            background: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 10rem 3rem 5rem;
+            position: relative;
+        }
+
+        .hero-date {
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 500;
+            line-height: 1.2;
+            max-width: 900px;
+            margin-bottom: 2rem;
+            letter-spacing: -0.03em;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            font-weight: 300;
+            color: var(--secondary);
+            max-width: 600px;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            gap: 1rem;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .btn-primary {
+            padding: 1rem 3rem;
+            background: var(--primary);
+            color: var(--surface);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(201, 169, 98, 0.3);
+        }
+
+        .btn-secondary {
+            padding: 1rem 3rem;
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: var(--surface);
+        }
+
+        /* Expert Section */
+        .expert {
+            padding: 8rem 3rem;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .expert-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .expert-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2rem;
+        }
+
+        .expert-name {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+            line-height: 1.3;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .expert-description {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            color: var(--secondary);
+            line-height: 1.8;
+        }
+
+        /* Audience Section */
+        .audience {
+            padding: 8rem 3rem;
+        }
+
+        .audience-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 500;
+            margin-bottom: 4rem;
+            letter-spacing: -0.02em;
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+        }
+
+        .audience-item {
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .audience-item:hover {
+            border-color: var(--accent);
+        }
+
+        .audience-item h3 {
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .audience-item p {
+            font-size: 0.9375rem;
+            font-weight: 300;
+            color: var(--secondary);
+            line-height: 1.7;
+        }
+
+        /* Program Section */
+        .program {
+            padding: 8rem 3rem;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .program-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .program-list {
+            list-style: none;
+        }
+
+        .program-item {
+            display: flex;
+            align-items: baseline;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .program-item:hover {
+            padding-left: 1rem;
+        }
+
+        .program-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--accent);
+            margin-right: 2rem;
+            line-height: 1;
+        }
+
+        .program-text {
+            font-size: 1.0625rem;
+            font-weight: 300;
+            color: var(--secondary);
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 8rem 3rem;
+        }
+
+        .pricing-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            padding: 3rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            transition: all 0.4s ease;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+        }
+
+        .pricing-card.featured {
+            background: var(--primary);
+            color: var(--surface);
+        }
+
+        .pricing-card.featured .pricing-price,
+        .pricing-card.featured .pricing-name,
+        .pricing-card.featured .pricing-feature {
+            color: var(--surface);
+        }
+
+        .pricing-name {
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .pricing-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-feature {
+            font-size: 0.9375rem;
+            font-weight: 300;
+            color: var(--secondary);
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pricing-card.featured .pricing-feature {
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .pricing-cta {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            text-align: center;
+            background: var(--primary);
+            color: var(--surface);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-cta:hover {
+            background: var(--accent);
+        }
+
+        .pricing-card.featured .pricing-cta {
+            background: var(--surface);
+            color: var(--primary);
+        }
+
+        /* Spots Section */
+        .spots {
+            padding: 6rem 3rem;
+            background: var(--surface);
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .spots-number {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 400;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .spots-text {
+            font-size: 0.9375rem;
+            font-weight: 300;
+            color: var(--secondary);
+            letter-spacing: 0.05em;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-text {
+            font-size: 0.875rem;
+            font-weight: 300;
+            color: var(--secondary);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 1rem 1.5rem;
+            }
+
+            .hero {
+                padding: 8rem 1.5rem 4rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .expert,
+            .audience,
+            .program,
+            .pricing,
+            .spots {
+                padding: 4rem 1.5rem;
+            }
+
+            .audience-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .program-item {
+                flex-direction: column;
+            }
+
+            .program-number {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">BOOST</div>
+            <a href="#pricing" class="header-cta">Купить</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-date">🔥 7 — 15 Март 2026</div>
+        <h1>Вайбкодинг курс<br>BOOST — интенсив<br>по созданию продуктов с AI</h1>
+        <p class="hero-description">Научись создавать продукты в 10 раз быстрее с нейросетями. Исследуй рынок, пиши продуктовые требования и ТЗ, создавай лендинги и MVP своего продукта.</p>
+        <div class="hero-cta">
+            <a href="#pricing" class="btn-primary">Смотреть тарифы</a>
+            <a href="#program" class="btn-secondary">Программа</a>
+        </div>
+    </section>
+
+    <section class="expert">
+        <div class="expert-content">
+            <div class="expert-label">Эксперт</div>
+            <h2 class="expert-name">Ваня Замесин</h2>
+            <p class="expert-description">Эксперт №1 среди менеджеров продукта в СНГ последние четыре года по независимым исследованиям. Основатель Меты — сервиса подбора психотерапевтов. Создатель самого популярного курса по продукту в СНГ, который прошли 12 000 собственников и специалистов.</p>
+        </div>
+    </section>
+
+    <section class="audience">
+        <div class="audience-content">
+            <div class="section-label">Для кого</div>
+            <h2 class="section-title">Найди себя</h2>
+            <div class="audience-grid">
+                <div class="audience-item">
+                    <h3>Фаундер</h3>
+                    <p>После провалов с новой идеей. Проверяй гипотезы за дни, не месяцы. Не зависи от разработчиков.</p>
+                </div>
+                <div class="audience-item">
+                    <h3>Владелец бизнеса</h3>
+                    <p>Устал зависеть от разработчиков. Создавай инструменты для бизнеса самому. Автоматизация за выходные.</p>
+                </div>
+                <div class="audience-item">
+                    <h3>Из найма в своё</h3>
+                    <p>Хочешь создать свой продукт. Создавай MVP за выходные, не бросая работу. Свобода создавать с безопасностью.</p>
+                </div>
+                <div class="audience-item">
+                    <h3>Переход в продукт</h3>
+                    <p>Нужен опыт для резюме. Получи портфолио из работающих продуктов. Выходи из круга «нет опыта — нет работы».</p>
+                </div>
+                <div class="audience-item">
+                    <h3>Продакт в найме</h3>
+                    <p>Хочешь понять AI на практике. Получи практические навыки создания продуктов с нейросетями. Не теория, а опыт.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="program" id="program">
+        <div class="program-content">
+            <div class="section-label">Программа</div>
+            <h2 class="section-title">6 воркшопов</h2>
+            <ul class="program-list">
+                <li class="program-item">
+                    <span class="program-number">0</span>
+                    <span class="program-text">Установка Cursor и Claude Code. Первый лендинг. Продуктовые требования.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">1</span>
+                    <span class="program-text">Прототип своего продукта. Доработка функциональности. Деплой прототипа.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">2</span>
+                    <span class="program-text">Сбор информации из интернета. Анализ рынка. Сегменты, Jobs, конкуренты, цены.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">3</span>
+                    <span class="program-text">Транскрибация и анализ созвонов. Автоматизация рабочих процессов. MCP интеграции.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">4</span>
+                    <span class="program-text">Написание продакшн-кода. QA-тесты и UX-тесты приложения.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">5</span>
+                    <span class="program-text">Деплой в продакшн. Подключение домена. Итоги обучения.</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="pricing-content">
+            <div class="section-label">Тарифы</div>
+            <h2 class="section-title">Выбери свой формат</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-name">Интенсив</div>
+                    <div class="pricing-price">49 900₽</div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">Записи 6 воркшопов</li>
+                        <li class="pricing-feature">Промпты + шаблоны</li>
+                        <li class="pricing-feature">Telegram-чат участников</li>
+                        <li class="pricing-feature">6 live воркшопов</li>
+                        <li class="pricing-feature">Работа над своей идеей</li>
+                    </ul>
+                    <a href="#" class="pricing-cta">Выбрать</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-name">С поддержкой</div>
+                    <div class="pricing-price">79 900₽</div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">Всё из тарифа «Интенсив»</li>
+                        <li class="pricing-feature">Персональный опытный куратор</li>
+                        <li class="pricing-feature">Обратная связь от Вани Замесина</li>
+                        <li class="pricing-feature">Поддержка на воркшопах и между ними</li>
+                        <li class="pricing-feature">3 недели поддержки после</li>
+                        <li class="pricing-feature">AURA Founder на 3 месяца</li>
+                    </ul>
+                    <a href="#" class="pricing-cta">Выбрать</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="spots">
+        <div class="spots-number">58</div>
+        <div class="spots-text">мест осталось из 70</div>
+    </section>
+
+    <footer>
+        <p class="footer-text">© 2026 BOOST. Вайбкодинг интенсив.</p>
+    </footer>
+</body>
+</html>

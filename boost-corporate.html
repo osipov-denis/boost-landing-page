@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOST — AI Product Development Intensive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --corporate-navy: #1E3A8A;
+            --corporate-light: #3B82F6;
+            --corporate-accent: #0EA5E9;
+            --corporate-bg: #FFFFFF;
+            --corporate-surface: #F8FAFC;
+            --corporate-border: #E2E8F0;
+            --corporate-text: #1E293B;
+            --corporate-muted: #64748B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background: var(--corporate-bg);
+            color: var(--corporate-text);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* Header */
+        header {
+            background: var(--corporate-bg);
+            border-bottom: 1px solid var(--corporate-border);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--corporate-navy);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--corporate-light);
+        }
+
+        .header-cta {
+            background: var(--corporate-navy);
+            color: var(--corporate-bg);
+            border: none;
+            padding: 12px 28px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 4px;
+        }
+
+        .header-cta:hover {
+            background: var(--corporate-light);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.15);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding: 80px 30px;
+            background: linear-gradient(135deg, var(--corporate-bg) 0%, var(--corporate-surface) 100%);
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--corporate-surface);
+            color: var(--corporate-navy);
+            padding: 10px 24px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            border: 1px solid var(--corporate-border);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            color: var(--corporate-navy);
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--corporate-muted);
+            margin-bottom: 50px;
+            font-weight: 400;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-cta {
+            background: var(--corporate-navy);
+            color: var(--corporate-bg);
+            padding: 18px 48px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(30, 58, 138, 0.12);
+        }
+
+        .hero-cta:hover {
+            background: var(--corporate-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(30, 58, 138, 0.18);
+        }
+
+        /* Expert Section */
+        .expert-section {
+            padding: 100px 30px;
+            background: var(--corporate-bg);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--corporate-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--corporate-navy);
+            letter-spacing: -0.5px;
+        }
+
+        .expert-card {
+            background: var(--corporate-bg);
+            border: 1px solid var(--corporate-border);
+            border-radius: 12px;
+            padding: 60px;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .expert-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--corporate-navy);
+        }
+
+        .expert-title {
+            font-size: 16px;
+            color: var(--corporate-light);
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .expert-description {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--corporate-muted);
+            margin-bottom: 40px;
+        }
+
+        .expert-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid var(--corporate-border);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--corporate-navy);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--corporate-muted);
+        }
+
+        /* Audience Section */
+        .audience-section {
+            padding: 100px 30px;
+            background: var(--corporate-surface);
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .audience-card {
+            background: var(--corporate-bg);
+            border: 1px solid var(--corporate-border);
+            border-radius: 8px;
+            padding: 40px;
+            transition: all 0.3s;
+        }
+
+        .audience-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+            border-color: var(--corporate-light);
+        }
+
+        .audience-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .audience-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--corporate-navy);
+        }
+
+        .audience-card p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--corporate-muted);
+            margin-bottom: 25px;
+        }
+
+        .audience-get {
+            padding: 15px;
+            background: var(--corporate-surface);
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--corporate-navy);
+            text-align: center;
+        }
+
+        /* Comparison Section */
+        .comparison-section {
+            padding: 100px 30px;
+            background: var(--corporate-bg);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 50px;
+            margin-top: 60px;
+        }
+
+        .comparison-card {
+            background: var(--corporate-surface);
+            border-radius: 12px;
+            padding: 50px;
+        }
+
+        .comparison-card.before {
+            border-left: 4px solid var(--corporate-muted);
+        }
+
+        .comparison-card.after {
+            border-left: 4px solid var(--corporate-navy);
+            background: var(--corporate-bg);
+            box-shadow: 0 8px 32px rgba(30, 58, 138, 0.08);
+        }
+
+        .comparison-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .comparison-card.before .comparison-badge {
+            background: var(--corporate-surface);
+            color: var(--corporate-muted);
+        }
+
+        .comparison-card.after .comparison-badge {
+            background: var(--corporate-navy);
+            color: var(--corporate-bg);
+        }
+
+        .comparison-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: var(--corporate-text);
+        }
+
+        /* Program Section */
+        .program-section {
+            padding: 100px 30px;
+            background: var(--corporate-surface);
+        }
+
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .timeline-card {
+            background: var(--corporate-bg);
+            border: 1px solid var(--corporate-border);
+            border-radius: 8px;
+            padding: 35px;
+            transition: all 0.3s;
+        }
+
+        .timeline-card:hover {
+            border-color: var(--corporate-light);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .timeline-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--corporate-light);
+            line-height: 1;
+            margin-bottom: 20px;
+            opacity: 0.4;
+        }
+
+        .timeline-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--corporate-navy);
+        }
+
+        .timeline-card ul {
+            list-style: none;
+        }
+
+        .timeline-card li {
+            padding: 10px 0;
+            font-size: 14px;
+            color: var(--corporate-muted);
+            border-bottom: 1px solid var(--corporate-border);
+        }
+
+        .timeline-card li:last-child {
+            border-bottom: none;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 100px 30px;
+            background: var(--corporate-bg);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 60px auto 0;
+        }
+
+        .pricing-card {
+            background: var(--corporate-bg);
+            border: 1px solid var(--corporate-border);
+            border-radius: 12px;
+            padding: 50px;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .pricing-card:hover {
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .pricing-card.featured {
+            border: 2px solid var(--corporate-navy);
+            box-shadow: 0 12px 40px rgba(30, 58, 138, 0.12);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--corporate-navy);
+            color: var(--corporate-bg);
+            padding: 6px 20px;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .pricing-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--corporate-navy);
+        }
+
+        .pricing-price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 56px;
+            font-weight: 700;
+            color: var(--corporate-navy);
+            line-height: 1;
+            margin-bottom: 40px;
+        }
+
+        .pricing-price span {
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--corporate-muted);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .pricing-features li {
+            padding: 14px 0;
+            font-size: 15px;
+            color: var(--corporate-text);
+            border-bottom: 1px solid var(--corporate-border);
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-cta {
+            width: 100%;
+            padding: 18px;
+            background: var(--corporate-light);
+            color: var(--corporate-bg);
+            border: none;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .pricing-card.featured .pricing-cta {
+            background: var(--corporate-navy);
+        }
+
+        .pricing-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(30, 58, 138, 0.15);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 100px 30px;
+            background: var(--corporate-surface);
+        }
+
+        .faq-grid {
+            max-width: 900px;
+            margin: 60px auto 0;
+        }
+
+        .faq-item {
+            background: var(--corporate-bg);
+            border: 1px solid var(--corporate-border);
+            border-radius: 8px;
+            padding: 35px;
+            margin-bottom: 20px;
+        }
+
+        .faq-question {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--corporate-navy);
+        }
+
+        .faq-answer {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--corporate-muted);
+        }
+
+        /* Final CTA */
+        .final-cta {
+            padding: 120px 30px;
+            background: var(--corporate-navy);
+            text-align: center;
+            color: var(--corporate-bg);
+        }
+
+        .final-cta h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .final-cta p {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .final-cta .hero-cta {
+            background: var(--corporate-bg);
+            color: var(--corporate-navy);
+        }
+
+        .final-cta .hero-cta:hover {
+            background: var(--corporate-light);
+            color: var(--corporate-bg);
+        }
+
+        .final-cta-info {
+            margin-top: 40px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--corporate-surface);
+            border-top: 1px solid var(--corporate-border);
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 14px;
+            color: var(--corporate-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .expert-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .final-cta h2 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">BOOST<span>_AI</span></div>
+            <button class="header-cta">Записаться</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">7 — 15 Март 2026</div>
+            <h1>Научитесь создавать продукты в 10 раз быстрее с нейросетями</h1>
+            <p class="hero-subtitle">Освойте полный цикл разработки продуктов с помощью AI: от анализа рынка до деплоя в продакшн</p>
+            <button class="hero-cta">Начать обучение</button>
+        </div>
+    </section>
+
+    <section class="expert-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Эксперт</div>
+                <h2 class="section-title">Ваня Замесин</h2>
+            </div>
+            <div class="expert-card">
+                <h3 class="expert-name">Иван Замесин</h3>
+                <p class="expert-title">Эксперт №1 среди менеджеров продукта в СНГ</p>
+                <p class="expert-description">
+                    По результатам независимых исследований, Иван занимает первое место среди IT менеджеров продукта в СНГ на протяжении четырех лет. Его опыт и методологии помогают тысячам специалистов достигать выдающихся результатов.
+                </p>
+
+                <div class="expert-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">30M+</div>
+                        <div class="stat-label">Ежемесячных пользователей</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">25%</div>
+                        <div class="stat-label">Рыночной доли</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">12K+</div>
+                        <div class="stat-label">Выпускников</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="audience-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Для кого</div>
+                <h2 class="section-title">Наши участники</h2>
+            </div>
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <div class="audience-icon">🚀</div>
+                    <h3>Основатели стартапов</h3>
+                    <p>Для предпринимателей, которые хотят быстро проверять гипотезы и минимизировать риски при разработке новых продуктов.</p>
+                    <div class="audience-get">Проверка гипотез за дни</div>
+                </div>
+
+                <div class="audience-card">
+                    <div class="audience-icon">💼</div>
+                    <h3>Владельцы бизнеса</h3>
+                    <p>Для руководителей, стремящихся сократить зависимость от технических специалистов и ускорить разработку.</p>
+                    <div class="audience-get">Создание инструментов за выходные</div>
+                </div>
+
+                <div class="audience-card">
+                    <div class="audience-icon">💡</div>
+                    <h3>Переход в свой продукт</h3>
+                    <p>Для специалистов, планирующих запуск собственного продукта без потери текущей стабильности.</p>
+                    <div class="audience-get">MVP за выходные</div>
+                </div>
+
+                <div class="audience-card">
+                    <div class="audience-icon">📈</div>
+                    <h3>Карьерный рост</h3>
+                    <p>Для тех, кто хочет перейти в продуктовую сферу и создать портфолио реальных работающих продуктов.</p>
+                    <div class="audience-get">Портфолио продуктов</div>
+                </div>
+
+                <div class="audience-card">
+                    <div class="audience-icon">🤖</div>
+                    <h3>Продакт-менеджеры</h3>
+                    <p>Для действующих продуктовых специалистов, желающих освоить практические навыки работы с AI.</p>
+                    <div class="audience-get">Практика с AI-инструментами</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="comparison-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Результаты</div>
+                <h2 class="section-title">До и после обучения</h2>
+            </div>
+            <div class="comparison-grid">
+                <div class="comparison-card before">
+                    <span class="comparison-badge">До интенсива</span>
+                    <div class="comparison-item">
+                        <span>Ожидание разработчика неделю</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span>Зависимость от аналитика</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span>Необходимость маркетолога</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span>Длительные циклы пивота</span>
+                    </div>
+                </div>
+
+                <div class="comparison-card after">
+                    <span class="comparison-badge">После интенсива</span>
+                    <div class="comparison-item">
+                        <span>Прототип за 15 минут</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span>Анализ рынка за 15 минут</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span>Лендинг за 15 минут</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span>Пивот за день независимо</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="program-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Программа</div>
+                <h2 class="section-title">Учебный план</h2>
+            </div>
+            <div class="timeline-grid">
+                <div class="timeline-card">
+                    <div class="timeline-number">0</div>
+                    <h3>Установка</h3>
+                    <ul>
+                        <li>Установка Cursor IDE</li>
+                        <li>Регистрация в Claude Code</li>
+                        <li>Настройка окружения</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-number">1</div>
+                    <h3>Основы работы</h3>
+                    <ul>
+                        <li>Принципы работы с Cursor</li>
+                        <li>Редактирование документов</li>
+                        <li>Создание первого лендинга</li>
+                        <li>Написание PRD</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-number">2</div>
+                    <h3>Прототипирование</h3>
+                    <ul>
+                        <li>Разработка прототипа продукта</li>
+                        <li>Доработка функциональности</li>
+                        <li>Деплой прототипа</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-number">3</div>
+                    <h3>Исследование рынка</h3>
+                    <ul>
+                        <li>Парсинг сайтов конкурентов</li>
+                        <li>Анализ отзывов клиентов</li>
+                        <li>Рыночный анализ</li>
+                        <li>Работа с AURA</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-number">4</div>
+                    <h3>Автоматизация</h3>
+                    <ul>
+                        <li>Транскрибация созвонов</li>
+                        <li>Автоматизация процессов</li>
+                        <li>Интеграция MCP-сервисов</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-number">5</div>
+                    <h3>Продакшн</h3>
+                    <ul>
+                        <li>Написание production-кода</li>
+                        <li>QA-тестирование</li>
+                        <li>UX-тестирование</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-number">6</div>
+                    <h3>Финализация</h3>
+                    <ul>
+                        <li>Деплой в продакшн</li>
+                        <li>Подключение домена</li>
+                        <li>Подведение итогов</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Тарифы</div>
+                <h2 class="section-title">Выберите формат участия</h2>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Интенсив</h3>
+                    <div class="pricing-price">49 900<span>₽</span></div>
+                    <ul class="pricing-features">
+                        <li>6 live-воркшопов</li>
+                        <li>Работа над своим проектом</li>
+                        <li>Доступ к записям</li>
+                        <li>Библиотека промптов</li>
+                        <li>Telegram-чат</li>
+                        <li>AURA (2 месяца)</li>
+                    </ul>
+                    <button class="pricing-cta">Выбрать тариф</button>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Рекомендуем</div>
+                    <h3>С поддержкой</h3>
+                    <div class="pricing-price">99 900<span>₽</span></div>
+                    <ul class="pricing-features">
+                        <li>Всё из тарифа "Интенсив"</li>
+                        <li>Личный куратор</li>
+                        <li>Фидбэк от эксперта</li>
+                        <li>Поддержка 24/7</li>
+                        <li>3 недели поддержки после</li>
+                        <li>AURA Founder (3 месяца)</li>
+                    </ul>
+                    <button class="pricing-cta">Выбрать тариф</button>
+                </div>
+            </div>
+
+            <p style="text-align: center; margin-top: 50px; font-size: 14px; color: var(--corporate-muted);">
+                Требуется подписка на Claude Code от $100/месяц
+            </p>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">FAQ</div>
+                <h2 class="section-title">Часто задаваемые вопросы</h2>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">Нужны ли навыки программирования?</div>
+                    <div class="faq-answer">
+                        Нет. 95% участников приступают к обучению без технического бэкграунда. Claude Code выполняет программирование — вы определяете результаты.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Что если я не успею завершить программу?</div>
+                    <div class="faq-answer">
+                        Записи остаются доступными indefinitely. В тарифе "С поддержкой" предусмотрены 3 недели дополнительной помощи после завершения интенсива.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Возможен ли возврат средств?</div>
+                    <div class="faq-answer">
+                        Да, возможен полный возврат до начала второго воркшопа без дополнительных вопросов.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Какая подготовка требуется?</div>
+                    <div class="faq-answer">
+                        Необходимо установить Cursor (бесплатно) и подготовить 1-3 идеи для работы. Детальные инструкции будут предоставлены после оплаты.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta">
+        <div class="container">
+            <h2>Готовы начать?</h2>
+            <p>Освободитесь от зависимости технических специалистов и реализуйте свои идеи самостоятельно</p>
+            <button class="hero-cta">Смотреть тарифы</button>
+            <p class="final-cta-info">58 мест на 1 поток • Возврат до начала второго воркшопа</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>BOOST AI INTENSIVE © 2026. Все права защищены.</p>
+        </div>
+    </footer>
+</body>
+</html>

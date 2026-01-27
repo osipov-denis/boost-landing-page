@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOST — Nordic Minimal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2d3436;
+            --secondary: #636e72;
+            --accent: #0984e3;
+            --background: #f5f6fa;
+            --surface: #ffffff;
+            --border: #dfe6e9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--background);
+            color: var(--primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--primary);
+        }
+
+        .header-cta {
+            padding: 0.625rem 1.5rem;
+            background: var(--primary);
+            color: var(--surface);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-radius: 6px;
+        }
+
+        .header-cta:hover {
+            background: var(--accent);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 10rem 2rem 5rem;
+        }
+
+        .hero-date {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.25rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            max-width: 900px;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-description {
+            font-size: 1.0625rem;
+            font-weight: 400;
+            color: var(--secondary);
+            max-width: 600px;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-primary {
+            padding: 0.875rem 2rem;
+            background: var(--primary);
+            color: var(--surface);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-radius: 6px;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent);
+        }
+
+        .btn-secondary {
+            padding: 0.875rem 2rem;
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            border-radius: 6px;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+        }
+
+        /* Sections */
+        .section-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            letter-spacing: -0.02em;
+        }
+
+        /* Expert */
+        .expert {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .expert-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .expert-name {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .expert-description {
+            font-size: 1rem;
+            color: var(--secondary);
+            line-height: 1.7;
+        }
+
+        /* Audience */
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .audience-item {
+            padding: 2rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .audience-item:hover {
+            border-color: var(--accent);
+        }
+
+        .audience-item h3 {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--primary);
+        }
+
+        .audience-item p {
+            font-size: 0.875rem;
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+
+        /* Program */
+        .program {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .program-list {
+            list-style: none;
+            max-width: 800px;
+        }
+
+        .program-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .program-item:last-child {
+            border-bottom: none;
+        }
+
+        .program-number {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-right: 1.5rem;
+            line-height: 1;
+            min-width: 50px;
+        }
+
+        .program-text {
+            font-size: 0.9375rem;
+            color: var(--secondary);
+            line-height: 1.6;
+            padding-top: 0.25rem;
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .pricing-card {
+            background: var(--surface);
+            padding: 2.5rem 2rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--accent);
+        }
+
+        .pricing-card.featured {
+            background: var(--primary);
+            color: var(--surface);
+        }
+
+        .pricing-name {
+            font-size: 0.8125rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .pricing-card.featured .pricing-name {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .pricing-price {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-feature {
+            font-size: 0.875rem;
+            padding: 0.625rem 0;
+            color: var(--secondary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pricing-card.featured .pricing-feature {
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .pricing-cta {
+            display: block;
+            width: 100%;
+            padding: 0.875rem 2rem;
+            background: var(--primary);
+            color: var(--surface);
+            text-align: center;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-radius: 6px;
+        }
+
+        .pricing-cta:hover {
+            background: var(--accent);
+        }
+
+        .pricing-card.featured .pricing-cta {
+            background: var(--surface);
+            color: var(--primary);
+        }
+
+        /* Spots */
+        .spots {
+            padding: 4rem 2rem;
+            background: var(--primary);
+            color: var(--surface);
+            text-align: center;
+        }
+
+        .spots-number {
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .spots-text {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-text {
+            font-size: 0.8125rem;
+            color: var(--secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 8rem 1.5rem 4rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .section-wrapper {
+                padding: 4rem 1.5rem;
+            }
+
+            .audience-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .program-item {
+                flex-direction: column;
+            }
+
+            .program-number {
+                margin-bottom: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">BOOST</div>
+            <a href="#pricing" class="header-cta">Register</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-date">🔥 March 7 — 15, 2026</div>
+        <h1>Vibe Coding Intensive<br>Create Products with AI</h1>
+        <p class="hero-description">Learn to build products 10x faster with neural networks. Research markets, write PRDs, create landing pages, and launch MVPs.</p>
+        <div class="hero-cta">
+            <a href="#pricing" class="btn-primary">Get Started</a>
+            <a href="#program" class="btn-secondary">Program</a>
+        </div>
+    </section>
+
+    <section class="expert">
+        <div class="section-wrapper">
+            <div class="expert-content">
+                <div class="section-label">Expert</div>
+                <h2 class="expert-name">Vanya Zamesin</h2>
+                <p class="expert-description">#1 Product Management Expert in CIS. Meta founder. Creator of the most popular product course with 12,000 graduates. Vibe coding pioneer.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="audience">
+        <div class="section-wrapper">
+            <div class="section-label">For Whom</div>
+            <h2 class="section-title">Who Should Join</h2>
+            <div class="audience-grid">
+                <div class="audience-item">
+                    <h3>Founders</h3>
+                    <p>Validate hypotheses in days. Don't wait for teams.</p>
+                </div>
+                <div class="audience-item">
+                    <h3>Business Owners</h3>
+                    <p>Weekend automation. Break free from developers.</p>
+                </div>
+                <div class="audience-item">
+                    <h3>Career Changers</h3>
+                    <p>Build MVPs while employed. Safe creative freedom.</p>
+                </div>
+                <div class="audience-item">
+                    <h3>Aspiring PMs</h3>
+                    <p>Real portfolio projects. Escape the catch-22.</p>
+                </div>
+                <div class="audience-item">
+                    <h3>Practitioners</h3>
+                    <p>Hands-on AI experience. Practice over theory.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="program">
+        <div class="section-wrapper">
+            <div class="section-label">Program</div>
+            <h2 class="section-title">Six Workshops</h2>
+            <ul class="program-list">
+                <li class="program-item">
+                    <span class="program-number">0</span>
+                    <span class="program-text">Setup tools. Build first landing page. Write PRDs.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">1</span>
+                    <span class="program-text">Prototype. Add features. Deploy first version.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">2</span>
+                    <span class="program-text">Gather data. Scrape competitors. Analyze markets.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">3</span>
+                    <span class="program-text">Transcribe calls. Automate workflows. MCP setup.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">4</span>
+                    <span class="program-text">Production code. QA testing. UX validation.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">5</span>
+                    <span class="program-text">Final deployment. Domain setup. Launch live.</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="section-wrapper">
+            <div class="section-label">Pricing</div>
+            <h2 class="section-title">Choose Your Plan</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-name">Intensive</div>
+                    <div class="pricing-price">49 900₽</div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">6 workshop recordings</li>
+                        <li class="pricing-feature">Prompts & templates</li>
+                        <li class="pricing-feature">Telegram community</li>
+                        <li class="pricing-feature">6 live workshops</li>
+                        <li class="pricing-feature">Work on your idea</li>
+                    </ul>
+                    <a href="#" class="pricing-cta">Select</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-name">With Support</div>
+                    <div class="pricing-price">79 900₽</div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">All Intensive benefits</li>
+                        <li class="pricing-feature">Personal mentor</li>
+                        <li class="pricing-feature">Direct Vanya feedback</li>
+                        <li class="pricing-feature">24/7 support</li>
+                        <li class="pricing-feature">3 weeks post-program</li>
+                        <li class="pricing-feature">AURA Founder 3 months</li>
+                    </ul>
+                    <a href="#" class="pricing-cta">Select</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="spots">
+        <div class="spots-number">58</div>
+        <div class="spots-text">places left of 70</div>
+    </section>
+
+    <footer>
+        <p class="footer-text">© 2026 BOOST. Nordic Minimal Vibe Coding.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOST — Art Deco Elegance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #c9a962;
+            --gold-light: #e8d5a3;
+            --black: #1a1a1a;
+            --cream: #f5f0e6;
+            --burgundy: #722f37;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: var(--cream);
+            color: var(--black);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(245, 240, 230, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: var(--gold);
+        }
+
+        .header-cta {
+            padding: 0.75rem 2rem;
+            background: var(--gold);
+            color: var(--cream);
+            text-decoration: none;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            border: 2px solid var(--gold);
+        }
+
+        .header-cta:hover {
+            background: transparent;
+            color: var(--gold);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 10rem 3rem 5rem;
+            position: relative;
+            background: linear-gradient(135deg, var(--cream) 0%, #fff9f0 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(201, 169, 98, 0.03) 35px, rgba(201, 169, 98, 0.03) 70px);
+            pointer-events: none;
+        }
+
+        .hero-date {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.0625rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            color: var(--burgundy);
+            margin-bottom: 3rem;
+            padding: 0.75rem 2rem;
+            border: 1px solid var(--gold);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 500;
+            line-height: 1.2;
+            max-width: 1000px;
+            margin-bottom: 2.5rem;
+            letter-spacing: 0.05em;
+            color: var(--black);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-description {
+            font-size: 1.1875rem;
+            font-weight: 400;
+            color: var(--black);
+            max-width: 650px;
+            line-height: 1.9;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            padding: 1rem 2.5rem;
+            background: var(--gold);
+            color: var(--cream);
+            text-decoration: none;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            border: 2px solid var(--gold);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--gold);
+        }
+
+        .btn-secondary {
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: var(--gold);
+            text-decoration: none;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            border: 2px solid var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--gold);
+            color: var(--cream);
+        }
+
+        /* Decorative elements */
+        .ornament {
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 2rem auto;
+        }
+
+        /* Sections */
+        .section-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8rem 3rem;
+        }
+
+        .section-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+            text-align: center;
+        }
+
+        .ornament-double {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem auto 4rem;
+        }
+
+        .ornament-double::before,
+        .ornament-double::after {
+            content: '';
+            width: 100px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .ornament-double .diamond {
+            width: 10px;
+            height: 10px;
+            background: var(--gold);
+            transform: rotate(45deg);
+        }
+
+        /* Expert */
+        .expert {
+            background: var(--black);
+            color: var(--cream);
+            border-top: 3px solid var(--gold);
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .expert-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .expert-name {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            color: var(--gold);
+        }
+
+        .expert-description {
+            font-size: 1.0625rem;
+            line-height: 2;
+            color: var(--gold-light);
+        }
+
+        /* Audience */
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .audience-item {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            background: #fff;
+            border: 1px solid var(--gold);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .audience-item::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid var(--gold);
+            pointer-events: none;
+        }
+
+        .audience-item:hover {
+            background: var(--gold);
+            color: var(--cream);
+        }
+
+        .audience-item:hover h3,
+        .audience-item:hover p {
+            color: var(--cream);
+        }
+
+        .audience-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.375rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+        }
+
+        .audience-item p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--black);
+        }
+
+        /* Program */
+        .program {
+            background: var(--black);
+            color: var(--cream);
+            border-top: 3px solid var(--gold);
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .program-list {
+            list-style: none;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .program-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 2.5rem 0;
+            border-bottom: 1px solid rgba(201, 169, 98, 0.3);
+        }
+
+        .program-item:last-child {
+            border-bottom: none;
+        }
+
+        .program-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            color: var(--gold);
+            margin-right: 2.5rem;
+            line-height: 1;
+            min-width: 80px;
+        }
+
+        .program-text {
+            font-size: 1.0625rem;
+            line-height: 1.9;
+            padding-top: 0.5rem;
+            color: var(--gold-light);
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .pricing-card {
+            background: #fff;
+            border: 2px solid var(--gold);
+            padding: 0;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid var(--gold);
+            pointer-events: none;
+        }
+
+        .pricing-card:hover {
+            background: var(--gold);
+            color: var(--cream);
+        }
+
+        .pricing-card:hover .pricing-name,
+        .pricing-card:hover .pricing-price,
+        .pricing-card:hover .pricing-feature,
+        .pricing-card:hover .pricing-cta {
+            color: var(--cream);
+            border-color: var(--cream);
+        }
+
+        .pricing-card.featured {
+            background: var(--burgundy);
+            border-color: var(--gold);
+        }
+
+        .pricing-card.featured:hover {
+            background: var(--gold);
+        }
+
+        .pricing-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            color: var(--burgundy);
+            padding: 2rem 2rem 0;
+        }
+
+        .pricing-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            color: var(--gold);
+        }
+
+        .pricing-features {
+            list-style: none;
+            padding: 0 2rem 2rem;
+        }
+
+        .pricing-feature {
+            font-size: 1rem;
+            padding: 0.75rem 0;
+            color: var(--black);
+            border-bottom: 1px solid rgba(201, 169, 98, 0.3);
+        }
+
+        .pricing-cta {
+            display: block;
+            padding: 1.25rem 2rem;
+            background: var(--gold);
+            color: var(--cream);
+            text-decoration: none;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            margin: 0 2rem 2rem;
+        }
+
+        .pricing-cta:hover {
+            background: var(--cream);
+            color: var(--gold);
+        }
+
+        /* Spots */
+        .spots {
+            padding: 6rem 3rem;
+            background: var(--black);
+            text-align: center;
+            border-top: 3px solid var(--gold);
+        }
+
+        .spots-number {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(4rem, 10vw, 8rem);
+            font-weight: 400;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .spots-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.0625rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            color: var(--gold-light);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2.5rem 3rem;
+            text-align: center;
+            background: var(--black);
+            border-top: 1px solid var(--gold);
+        }
+
+        .footer-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.875rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            color: var(--gold-light);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 1rem 1.5rem;
+            }
+
+            .hero {
+                padding: 8rem 1.5rem 4rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .section-wrapper {
+                padding: 5rem 1.5rem;
+            }
+
+            .audience-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .program-item {
+                flex-direction: column;
+            }
+
+            .program-number {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">BOOST</div>
+            <a href="#pricing" class="header-cta">Reserve Your Place</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-date">🔥 March 7 — 15, 2026</div>
+        <h1>Vibe Coding Intensive<br>BOOST — Create Products<br>with Artificial Intelligence</h1>
+        <p class="hero-description">Master the art of creating products ten times faster with neural networks. Research markets, write PRDs, create landing pages, and launch MVPs with unprecedented elegance and efficiency.</p>
+        <div class="hero-cta">
+            <a href="#pricing" class="btn-primary">View Tariffs</a>
+            <a href="#program" class="btn-secondary">The Programme</a>
+        </div>
+    </section>
+
+    <section class="expert">
+        <div class="section-wrapper">
+            <div class="expert-content">
+                <div class="section-label">The Expert</div>
+                <h2 class="expert-name">Vanya Zamesin</h2>
+                <div class="ornament"></div>
+                <p class="expert-description">The foremost product management expert in the CIS region. Founder of Meta. Creator of the most popular product course, completed by 12,000 entrepreneurs and specialists. A visionary in the art of vibe coding.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="audience">
+        <div class="section-wrapper">
+            <div class="section-label">For Whom</div>
+            <h2 class="section-title">Your Path to Excellence</h2>
+            <div class="ornament-double">
+                <div class="diamond"></div>
+            </div>
+            <div class="audience-grid">
+                <div class="audience-item">
+                    <h3>The Founder</h3>
+                    <p>Validate hypotheses in days, not months. Independence from development teams.</p>
+                </div>
+                <div class="audience-item">
+                    <h3>The Business Owner</h3>
+                    <p>Automation accomplished in weekends. Liberation from developer dependence.</p>
+                </div>
+                <div class="audience-item">
+                    <h3>The Aspiring Creator</h3>
+                    <p>Build MVPs while maintaining employment. Security alongside creative freedom.</p>
+                </div>
+                <div class="audience-item">
+                    <h3>The Product Careerist</h3>
+                    <p>Real portfolio accomplishments. Escape the experience paradox.</p>
+                </div>
+                <div class="audience-item">
+                    <h3 The Practitioner></h3>
+                    <p>Understand AI through practice. Pure experience over theoretical abstraction.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="program">
+        <div class="section-wrapper">
+            <div class="section-label">The Programme</div>
+            <h2 class="section-title">Six Workshops</h2>
+            <div class="ornament"></div>
+            <ul class="program-list">
+                <li class="program-item">
+                    <span class="program-number">I</span>
+                    <span class="program-text">Tool installation. First landing page creation. Product requirements documentation.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">II</span>
+                    <span class="program-text">Prototyping mastery. Feature development. Initial deployment.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">III</span>
+                    <span class="program-text">Data acquisition. Competitive analysis. Market research excellence.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">IV</span>
+                    <span class="program-text">Transcription. Process automation. MCP integration mastery.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">V</span>
+                    <span class="program-text">Production code. Quality assurance. User experience testing.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">VI</span>
+                    <span class="program-text">Final deployment. Domain configuration. Production launch. Culmination.</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="section-wrapper">
+            <div class="section-label">Investment</div>
+            <h2 class="section-title">Select Your Tier</h2>
+            <div class="ornament-double">
+                <div class="diamond"></div>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-name">Intensive</div>
+                    <div class="pricing-price">49 900₽</div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">Six workshop recordings</li>
+                        <li class="pricing-feature">Prompts & templates</li>
+                        <li class="pricing-feature">Telegram community</li>
+                        <li class="pricing-feature">Six live workshops</li>
+                        <li class="pricing-feature">Personal project work</li>
+                    </ul>
+                    <a href="#" class="pricing-cta">Select</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-name">With Mentorship</div>
+                    <div class="pricing-price">79 900₽</div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">All Intensive benefits</li>
+                        <li class="pricing-feature">Personal mentor</li>
+                        <li class="pricing-feature">Vanya's feedback</li>
+                        <li class="pricing-feature">Continuous support</li>
+                        <li class="pricing-feature">Three weeks post-program</li>
+                        <li class="pricing-feature">AURA Founder: three months</li>
+                    </ul>
+                    <a href="#" class="pricing-cta">Select</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="spots">
+        <div class="spots-number">58</div>
+        <div class="spots-text">Places Remaining of Seventy</div>
+    </section>
+
+    <footer>
+        <p class="footer-text">© 2026 BOOST. Art Deco Vibe Coding Intensive.</p>
+    </footer>
+</body>
+</html>

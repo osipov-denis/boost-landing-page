@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOST — Retro 80s Vibe Coding</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Aldrich&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink: #ff1493;
+            --blue: #00d4ff;
+            --purple: #9400d3;
+            --yellow: #ffff00;
+            --dark: #0a0a0a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Aldrich', sans-serif;
+            background: var(--dark);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Grid background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                linear-gradient(transparent 95%, var(--pink) 95%),
+                linear-gradient(90deg, transparent 95%, var(--purple) 95%);
+            background-size: 40px 40px;
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 3px solid var(--pink);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            color: var(--pink);
+            text-shadow:
+                0 0 10px var(--pink),
+                0 0 20px var(--pink);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px var(--pink), 0 0 20px var(--pink); }
+            to { text-shadow: 0 0 20px var(--pink), 0 0 40px var(--pink), 0 0 60px var(--pink); }
+        }
+
+        .header-cta {
+            padding: 0.75rem 1.5rem;
+            background: var(--blue);
+            color: var(--dark);
+            text-decoration: none;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px var(--blue);
+        }
+
+        .header-cta:hover {
+            background: var(--yellow);
+            box-shadow: 0 0 25px var(--yellow);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-date {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.625rem;
+            color: var(--yellow);
+            background: rgba(255, 255, 0, 0.1);
+            padding: 1rem 1.5rem;
+            border: 3px solid var(--yellow);
+            margin-bottom: 3rem;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: clamp(1.25rem, 3vw, 2rem);
+            line-height: 2;
+            max-width: 1000px;
+            margin-bottom: 2rem;
+            color: var(--blue);
+            text-shadow:
+                3px 3px 0 var(--pink),
+                6px 6px 0 var(--purple);
+        }
+
+        .hero-description {
+            font-size: 1.0625rem;
+            max-width: 650px;
+            line-height: 2;
+            margin-bottom: 3rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-retro {
+            padding: 1.25rem 2rem;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.625rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .btn-retro.primary {
+            background: var(--pink);
+            color: #fff;
+            box-shadow:
+                5px 5px 0 var(--purple),
+                0 0 20px var(--pink);
+        }
+
+        .btn-retro.primary:hover {
+            transform: translate(2px, 2px);
+            box-shadow:
+                3px 3px 0 var(--purple),
+                0 0 30px var(--pink);
+        }
+
+        .btn-retro.secondary {
+            background: transparent;
+            color: var(--blue);
+            border: 3px solid var(--blue);
+            box-shadow: 0 0 15px var(--blue);
+        }
+
+        .btn-retro.secondary:hover {
+            background: rgba(0, 212, 255, 0.2);
+        }
+
+        /* Sections */
+        section {
+            position: relative;
+            z-index: 1;
+            border-bottom: 2px solid rgba(255, 20, 147, 0.3);
+        }
+
+        .section-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            margin-bottom: 3rem;
+            color: var(--yellow);
+            text-shadow: 0 0 20px var(--yellow);
+            text-align: center;
+        }
+
+        /* Expert */
+        .expert {
+            background: linear-gradient(180deg, var(--dark) 0%, rgba(148, 0, 211, 0.1) 100%);
+        }
+
+        .expert-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .expert-name {
+            font-family: 'Press Start 2P', cursive;
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            margin-bottom: 2rem;
+            color: var(--pink);
+            text-shadow: 0 0 20px var(--pink);
+            line-height: 2;
+        }
+
+        .expert-description {
+            font-size: 1rem;
+            line-height: 2;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* Audience */
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .audience-item {
+            background: rgba(0, 212, 255, 0.05);
+            border: 3px solid var(--blue);
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .audience-item:hover {
+            border-color: var(--pink);
+            box-shadow: 0 0 30px rgba(255, 20, 147, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .audience-item h3 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.625rem;
+            margin-bottom: 1.5rem;
+            color: var(--blue);
+        }
+
+        .audience-item p {
+            font-size: 0.9375rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Program */
+        .program {
+            background: rgba(255, 20, 147, 0.05);
+        }
+
+        .program-list {
+            list-style: none;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .program-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 2rem;
+            background: rgba(148, 0, 211, 0.1);
+            border-left: 5px solid var(--purple);
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .program-item:hover {
+            border-left-color: var(--pink);
+            background: rgba(255, 20, 147, 0.1);
+        }
+
+        .program-number {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2rem;
+            color: var(--yellow);
+            margin-right: 2rem;
+            line-height: 1;
+            text-shadow: 0 0 15px var(--yellow);
+            min-width: 70px;
+        }
+
+        .program-text {
+            font-size: 0.9375rem;
+            line-height: 1.8;
+            padding-top: 0.5rem;
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: rgba(0, 212, 255, 0.05);
+            border: 3px solid var(--blue);
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.4);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--pink);
+            background: rgba(255, 20, 147, 0.05);
+        }
+
+        .pricing-card.featured:hover {
+            box-shadow: 0 0 40px rgba(255, 20, 147, 0.4);
+        }
+
+        .pricing-header {
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pricing-name {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.625rem;
+            margin-bottom: 1rem;
+            color: var(--blue);
+        }
+
+        .pricing-card.featured .pricing-name {
+            color: var(--pink);
+        }
+
+        .pricing-price {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.5rem;
+            color: var(--yellow);
+            text-shadow: 0 0 15px var(--yellow);
+        }
+
+        .pricing-features {
+            list-style: none;
+            padding: 2rem;
+        }
+
+        .pricing-feature {
+            font-size: 0.875rem;
+            padding: 0.75rem 0;
+            color: rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pricing-cta {
+            display: block;
+            padding: 1.5rem 2rem;
+            background: var(--pink);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.625rem;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-cta:hover {
+            background: var(--yellow);
+            color: var(--dark);
+        }
+
+        /* Spots */
+        .spots {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(255, 255, 0, 0.05) 0%, var(--dark) 100%);
+        }
+
+        .spots-number {
+            font-family: 'Press Start 2P', cursive;
+            font-size: clamp(3rem, 10vw, 7rem);
+            color: var(--pink);
+            text-shadow:
+                0 0 20px var(--pink),
+                0 0 40px var(--pink);
+            margin-bottom: 1rem;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .spots-text {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.625rem;
+            color: var(--blue);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem;
+            text-align: center;
+            background: rgba(10, 10, 10, 0.95);
+        }
+
+        .footer-text {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                line-height: 2.5;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .program-item {
+                flex-direction: column;
+            }
+
+            .program-number {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">BOOST</div>
+        <a href="#pricing" class="header-cta">PLAY NOW</a>
+    </header>
+
+    <section class="hero">
+        <div class="hero-date">🔥 7 — 15 MAR 2026</div>
+        <h1>BOOST INTENSIVE<br>CREATE PRODUCTS<br>WITH AI<br>INSERT COIN TO START</h1>
+        <p class="hero-description">Научись создавать продукты в 10 раз быстрее с нейросетями. Исследуй рынок, пиши PRD, создавай лендинги и MVP. GAME START!</p>
+        <div class="hero-cta">
+            <a href="#pricing" class="btn-retro primary">START GAME</a>
+            <a href="#program" class="btn-retro secondary">LEVELS</a>
+        </div>
+    </section>
+
+    <section class="expert">
+        <div class="section-wrapper">
+            <div class="expert-content">
+                <div class="section-title">PLAYER 1</div>
+                <h2 class="expert-name">VANYA ZAMESIN</h2>
+                <p class="expert-description">Эксперт №1 среди PM в СНГ. Основатель Меты. Создатель курса, который прошли 12,000 игроков. HIGH SCORE!</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="audience">
+        <div class="section-wrapper">
+            <div class="section-title">SELECT CHARACTER</div>
+            <div class="audience-grid">
+                <div class="audience-item">
+                    <h3>FOUNDER</h3>
+                    <p>Проверяй гипотезы за дни. Не жди команду. SPEED RUN!</p>
+                </div>
+                <div class="audience-item">
+                    <h3>BUSINESS OWNER</h3>
+                    <p>Автоматизация за выходные. POWER UP!</p>
+                </div>
+                <div class="audience-item">
+                    <h3>QUIT TO START</h3>
+                    <p>MVP за выходные. EXTRA LIFE!</p>
+                </div>
+                <div class="audience-item">
+                    <h3>LEVEL UP</h3>
+                    <p>Реальное портфолио. UNLOCK ACHIEVEMENT!</p>
+                </div>
+                <div class="audience-item">
+                    <h3>PRODUCT MANAGER</h3>
+                    <p>AI на практике. REAL SKILLS!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="program">
+        <div class="section-wrapper">
+            <div class="section-title">GAME LEVELS</div>
+            <ul class="program-list">
+                <li class="program-item">
+                    <span class="program-number">0</span>
+                    <span class="program-text">Установка инструментов. Первый лендинг. PRD.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">1</span>
+                    <span class="program-text">Прототип. Функциональность. Деплой.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">2</span>
+                    <span class="program-text">Данные. Парсинг. Анализ рынка.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">3</span>
+                    <span class="program-text">Транскрибация. Автоматизация. MCP.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">4</span>
+                    <span class="program-text">Код. QA. UX тесты.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">5</span>
+                    <span class="program-text">Деплой. Домен. Запуск. WIN!</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="section-wrapper">
+            <div class="section-title">SELECT DIFFICULTY</div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <div class="pricing-name">NORMAL</div>
+                        <div class="pricing-price">49 900₽</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">→ 6 воркшопов (recorded)</li>
+                        <li class="pricing-feature">→ Промпты + шаблоны</li>
+                        <li class="pricing-feature">→ Telegram чат</li>
+                        <li class="pricing-feature">→ 6 live воркшопов</li>
+                        <li class="pricing-feature">→ Своя идея</li>
+                    </ul>
+                    <a href="#" class="pricing-cta">SELECT</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-header">
+                        <div class="pricing-name">EXPERT</div>
+                        <div class="pricing-price">79 900₽</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">→ Всё из Normal</li>
+                        <li class="pricing-feature">→ Персональный куратор</li>
+                        <li class="pricing-feature">→ Фидбэк от Вани</li>
+                        <li class="pricing-feature">→ Поддержка 24/7</li>
+                        <li class="pricing-feature">→ 3 недели после</li>
+                        <li class="pricing-feature">→ AURA Founder 3 мес.</li>
+                    </ul>
+                    <a href="#" class="pricing-cta">SELECT</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="spots">
+        <div class="spots-number">58</div>
+        <div class="spots-text">SPOTS LEFT OF 70</div>
+    </section>
+
+    <footer>
+        <p class="footer-text">© 2026 BOOST. RETRO 80S VIBE CODING.</p>
+        <p class="footer-text" style="margin-top: 1rem;">PRESS START TO CONTINUE</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOST — Neobrutalism</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --yellow: #FFDE59;
+            --pink: #FF6B9D;
+            --blue: #4ECDC4;
+            --black: #1a1a1a;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: var(--yellow);
+            border-bottom: 4px solid var(--black);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--black);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            transform: rotate(-2deg);
+            box-shadow: 4px 4px 0 var(--black);
+        }
+
+        .header-cta {
+            padding: 0.75rem 1.5rem;
+            background: var(--pink);
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 700;
+            border: 3px solid var(--black);
+            box-shadow: 4px 4px 0 var(--black);
+            transition: all 0.2s ease;
+        }
+
+        .header-cta:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 var(--black);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 6rem 2rem;
+            background: var(--blue);
+            border-bottom: 4px solid var(--black);
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-date {
+            display: inline-block;
+            background: var(--yellow);
+            padding: 0.75rem 1.5rem;
+            font-weight: 700;
+            font-size: 0.875rem;
+            border: 3px solid var(--black);
+            box-shadow: 6px 6px 0 var(--black);
+            margin-bottom: 2rem;
+            transform: rotate(1deg);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            color: var(--white);
+            text-shadow: 3px 3px 0 var(--black);
+        }
+
+        .hero-description {
+            font-size: 1.1875rem;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            background: var(--white);
+            padding: 2rem;
+            border: 3px solid var(--black);
+            box-shadow: 8px 8px 0 var(--black);
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-neo {
+            padding: 1rem 2rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: 3px solid var(--black);
+            box-shadow: 5px 5px 0 var(--black);
+            transition: all 0.2s ease;
+            display: inline-block;
+        }
+
+        .btn-neo.primary {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        .btn-neo.secondary {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .btn-neo:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 8px 8px 0 var(--black);
+        }
+
+        /* Sections */
+        section {
+            border-bottom: 4px solid var(--black);
+        }
+
+        .section-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            background: var(--black);
+            color: var(--white);
+            padding: 1rem 2rem;
+            display: inline-block;
+            box-shadow: 6px 6px 0 var(--black);
+            transform: rotate(-1deg);
+        }
+
+        /* Expert */
+        .expert {
+            background: var(--pink);
+        }
+
+        .expert-content {
+            background: var(--white);
+            padding: 3rem;
+            border: 3px solid var(--black);
+            box-shadow: 10px 10px 0 var(--black);
+        }
+
+        .expert-name {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .expert-description {
+            font-size: 1.0625rem;
+            line-height: 1.7;
+        }
+
+        /* Audience */
+        .audience {
+            background: var(--yellow);
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .audience-item {
+            background: var(--white);
+            padding: 2rem;
+            border: 3px solid var(--black);
+            box-shadow: 6px 6px 0 var(--black);
+            transition: all 0.2s ease;
+        }
+
+        .audience-item:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 9px 9px 0 var(--black);
+        }
+
+        .audience-item h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--blue);
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+        }
+
+        .audience-item p {
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+
+        /* Program */
+        .program {
+            background: var(--white);
+        }
+
+        .program-list {
+            list-style: none;
+        }
+
+        .program-item {
+            background: var(--blue);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border: 3px solid var(--black);
+            box-shadow: 5px 5px 0 var(--black);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .program-item:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0 var(--black);
+        }
+
+        .program-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: var(--yellow);
+            color: var(--black);
+            padding: 0.5rem 1rem;
+            min-width: 80px;
+            text-align: center;
+            border: 2px solid var(--black);
+        }
+
+        .program-text {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        /* Pricing */
+        .pricing {
+            background: var(--yellow);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            border: 3px solid var(--black);
+            box-shadow: 8px 8px 0 var(--black);
+            padding: 0;
+            transition: all 0.2s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0 var(--black);
+        }
+
+        .pricing-header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 3px solid var(--black);
+        }
+
+        .pricing-name {
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .pricing-features {
+            list-style: none;
+            padding: 2rem;
+        }
+
+        .pricing-feature {
+            font-size: 0.9375rem;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid var(--black);
+        }
+
+        .pricing-cta {
+            display: block;
+            padding: 1.25rem 2rem;
+            background: var(--pink);
+            color: var(--black);
+            text-align: center;
+            text-decoration: none;
+            font-weight: 700;
+            border-top: 3px solid var(--black);
+            font-size: 1rem;
+        }
+
+        /* Spots */
+        .spots {
+            background: var(--black);
+            color: var(--white);
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .spots-number {
+            font-size: clamp(4rem, 12vw, 10rem);
+            font-weight: 700;
+            line-height: 1;
+            color: var(--yellow);
+        }
+
+        .spots-text {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-top: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--blue);
+            padding: 2rem;
+            text-align: center;
+            border-top: 4px solid var(--black);
+        }
+
+        .footer-text {
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-description {
+                padding: 1.5rem;
+            }
+
+            .audience-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .program-item {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">BOOST</div>
+            <a href="#pricing" class="header-cta">JOIN →</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-date">🔥 MARCH 7-15, 2026</div>
+            <h1>VIBE CODING<br>INTENSIVE<br>WITH AI</h1>
+            <div class="hero-description">
+                Learn to build products 10x faster with neural networks. Research markets, write PRDs, create landing pages, and launch MVPs. Don't wait for developers—do it yourself!
+            </div>
+            <div class="hero-cta">
+                <a href="#pricing" class="btn-neo primary">START NOW</a>
+                <a href="#program" class="btn-neo secondary">SEE PROGRAM</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="expert">
+        <div class="section-wrapper">
+            <h2 class="section-title">THE EXPERT</h2>
+            <div class="expert-content">
+                <div class="expert-name">VANYA ZAMESIN</div>
+                <p class="expert-description">
+                    #1 Product Management Expert in CIS. Meta founder. Created the most popular product course with 12,000 graduates. A true pioneer in vibe coding and AI-powered product development.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="audience">
+        <div class="section-wrapper">
+            <h2 class="section-title">FOR WHOM?</h2>
+            <div class="audience-grid">
+                <div class="audience-item">
+                    <h3>FOUNDERS</h3>
+                    <p>Validate hypotheses in days. Don't wait for teams. Move fast!</p>
+                </div>
+                <div class="audience-item">
+                    <h3>BUSINESS</h3>
+                    <p>Weekend automation. Break free from developers. Save money!</p>
+                </div>
+                <div class="audience-item">
+                    <h3>CAREER</h3>
+                    <p>Build MVPs while employed. Safe creative freedom. No risk!</p>
+                </div>
+                <div class="audience-item">
+                    <h3>ASPIRING PMs</h3>
+                    <p>Real portfolio projects. Escape the catch-22. Get hired!</p>
+                </div>
+                <div class="audience-item">
+                    <h3>PRACTITIONERS</h3>
+                    <p>Hands-on AI experience. Practice over theory. Build skills!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="program">
+        <div class="section-wrapper">
+            <h2 class="section-title">6 WORKSHOPS</h2>
+            <ul class="program-list">
+                <li class="program-item">
+                    <span class="program-number">0</span>
+                    <span class="program-text">Setup tools. Build first landing page. Write PRDs.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">1</span>
+                    <span class="program-text">Prototype. Add features. Deploy first version.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">2</span>
+                    <span class="program-text">Gather data. Scrape competitors. Analyze markets.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">3</span>
+                    <span class="program-text">Transcribe calls. Automate workflows. MCP setup.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">4</span>
+                    <span class="program-text">Production code. QA testing. UX validation.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">5</span>
+                    <span class="program-text">Final deployment. Domain setup. Launch live!</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="section-wrapper">
+            <h2 class="section-title">PRICING</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <div class="pricing-name">INTENSIVE</div>
+                        <div class="pricing-price">49 900₽</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">✓ 6 workshop recordings</li>
+                        <li class="pricing-feature">✓ Prompts & templates</li>
+                        <li class="pricing-feature">✓ Telegram community</li>
+                        <li class="pricing-feature">✓ 6 live workshops</li>
+                        <li class="pricing-feature">✓ Work on your idea</li>
+                    </ul>
+                    <a href="#" class="pricing-cta">CHOOSE →</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header" style="background: var(--yellow);">
+                        <div class="pricing-name">WITH SUPPORT</div>
+                        <div class="pricing-price">79 900₽</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">✓ All Intensive perks</li>
+                        <li class="pricing-feature">✓ Personal mentor</li>
+                        <li class="pricing-feature">✓ Direct Vanya feedback</li>
+                        <li class="pricing-feature">✓ 24/7 support</li>
+                        <li class="pricing-feature">✓ 3 weeks post-program</li>
+                        <li class="pricing-feature">✓ AURA Founder 3 months</li>
+                    </ul>
+                    <a href="#" class="pricing-cta">CHOOSE →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="spots">
+        <div class="spots-number">58</div>
+        <div class="spots-text">SPOTS LEFT OF 70</div>
+    </section>
+
+    <footer>
+        <p class="footer-text">© 2026 BOOST. NEOBRUTALISM VIBE CODING.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOST — Вайбкодинг интенсив</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pixel-blue: #0066FF;
+            --pixel-pink: #FF1493;
+            --pixel-yellow: #FFD700;
+            --pixel-green: #00FF00;
+            --pixel-orange: #FF6600;
+            --pixel-purple: #9900FF;
+            --pixel-dark: #0D0D0D;
+            --pixel-light: #1A1A1A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background: var(--pixel-dark);
+            color: var(--pixel-blue);
+            line-height: 1.8;
+            image-rendering: pixelated;
+        }
+
+        /* Pixel pattern background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                linear-gradient(var(--pixel-blue) 1px, transparent 1px),
+                linear-gradient(90deg, var(--pixel-blue) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.05;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* Pixel border effect */
+        .pixel-border {
+            border: 4px solid;
+            box-shadow:
+                4px 0 0 0,
+                -4px 0 0 0,
+                0 -4px 0 0,
+                0 4px 0 0;
+        }
+
+        /* Header */
+        header {
+            background: var(--pixel-light);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 4px solid var(--pixel-blue);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            color: var(--pixel-pink);
+            text-shadow: 2px 2px 0 var(--pixel-yellow);
+        }
+
+        .logo span {
+            color: var(--pixel-yellow);
+        }
+
+        .header-cta {
+            background: var(--pixel-blue);
+            color: var(--pixel-dark);
+            border: none;
+            padding: 12px 24px;
+            font-size: 12px;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 4px 4px 0 var(--pixel-pink);
+        }
+
+        .header-cta:hover {
+            background: var(--pixel-pink);
+            box-shadow: 4px 4px 0 var(--pixel-blue);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 30px;
+            background: var(--pixel-light);
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--pixel-green);
+            color: var(--pixel-dark);
+            padding: 12px 24px;
+            font-size: 12px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            line-height: 1.3;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            color: var(--pixel-dark);
+            text-shadow: 3px 3px 0 var(--pixel-pink);
+        }
+
+        .hero-subtitle {
+            font-size: 14px;
+            color: var(--pixel-light);
+            margin-bottom: 50px;
+        }
+
+        .hero-cta {
+            background: var(--pixel-yellow);
+            color: var(--pixel-dark);
+            padding: 20px 50px;
+            font-size: 14px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            box-shadow: 6px 6px 0 var(--pixel-orange);
+        }
+
+        .hero-cta:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 8px 8px 0 var(--pixel-orange);
+        }
+
+        /* Expert Section */
+        .expert-section {
+            padding: 100px 30px;
+            background: var(--pixel-dark);
+        }
+
+        .section-title {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 60px;
+            text-transform: uppercase;
+            color: var(--pixel-yellow);
+            text-shadow: 2px 2px 0 var(--pixel-purple);
+        }
+
+        .expert-card {
+            background: var(--pixel-light);
+            color: var(--pixel-dark);
+            padding: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .expert-card::before {
+            content: '████████████████';
+            position: absolute;
+            top: -2px;
+            left: 0;
+            right: 0;
+            font-size: 16px;
+            color: var(--pixel-blue);
+            overflow: hidden;
+        }
+
+        .expert-name {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: var(--pixel-pink);
+            text-shadow: 2px 2px 0 var(--pixel-yellow);
+        }
+
+        .expert-title {
+            font-size: 12px;
+            color: var(--pixel-green);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .expert-description {
+            font-size: 14px;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .expert-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 4px solid var(--pixel-blue);
+        }
+
+        .stat-item {
+            text-align: center;
+            background: var(--pixel-dark);
+            padding: 20px;
+            color: var(--pixel-yellow);
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+
+        /* Audience Section */
+        .audience-section {
+            padding: 100px 30px;
+            background: var(--pixel-light);
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .audience-card {
+            background: var(--pixel-dark);
+            color: var(--pixel-blue);
+            padding: 35px;
+            border: 4px solid;
+        }
+
+        .audience-card:nth-child(1) { border-color: var(--pixel-pink); }
+        .audience-card:nth-child(2) { border-color: var(--pixel-cyan); }
+        .audience-card:nth-child(3) { border-color: var(--pixel-yellow); }
+        .audience-card:nth-child(4) { border-color: var(--pixel-green); }
+        .audience-card:nth-child(5) { border-color: var(--pixel-purple); }
+
+        .audience-card h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            color: var(--pixel-yellow);
+        }
+
+        .audience-card p {
+            font-size: 12px;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        .audience-get {
+            padding: 12px;
+            background: var(--pixel-pink);
+            color: var(--pixel-dark);
+            font-size: 10px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        /* Comparison Section */
+        .comparison-section {
+            padding: 100px 30px;
+            background: var(--pixel-dark);
+        }
+
+        .comparison-section .section-title {
+            color: var(--pixel-green);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 50px;
+            margin-top: 60px;
+        }
+
+        .comparison-card {
+            padding: 40px;
+            border: 4px solid;
+        }
+
+        .comparison-card.before {
+            background: var(--pixel-light);
+            border-color: var(--pixel-gray);
+        }
+
+        .comparison-card.after {
+            background: var(--pixel-green);
+            color: var(--pixel-dark);
+            border-color: var(--pixel-yellow);
+        }
+
+        .comparison-badge {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .comparison-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        /* Program Section */
+        .program-section {
+            padding: 100px 30px;
+            background: var(--pixel-light);
+        }
+
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .timeline-card {
+            background: var(--pixel-dark);
+            color: var(--pixel-blue);
+            padding: 35px;
+            border: 4px solid var(--pixel-pink);
+        }
+
+        .timeline-number {
+            font-size: 48px;
+            line-height: 1;
+            margin-bottom: 15px;
+            color: var(--pixel-yellow);
+            opacity: 0.5;
+        }
+
+        .timeline-card h3 {
+            font-size: 16px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            color: var(--pixel-green);
+        }
+
+        .timeline-card ul {
+            list-style: none;
+        }
+
+        .timeline-card li {
+            padding: 10px 0;
+            font-size: 12px;
+            border-bottom: 2px solid var(--pixel-blue);
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 100px 30px;
+            background: var(--pixel-dark);
+        }
+
+        .pricing-section .section-title {
+            color: var(--pixel-pink);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 50px;
+            max-width: 1000px;
+            margin: 60px auto 0;
+        }
+
+        .pricing-card {
+            background: var(--pixel-light);
+            color: var(--pixel-dark);
+            padding: 50px;
+            border: 4px solid var(--pixel-yellow);
+        }
+
+        .pricing-card.featured {
+            background: var(--pixel-pink);
+            color: var(--pixel-dark);
+            transform: scale(1.05);
+        }
+
+        .pricing-badge {
+            display: block;
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        .pricing-card h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .pricing-price {
+            font-size: 48px;
+            font-weight: bold;
+            line-height: 1;
+            margin-bottom: 40px;
+        }
+
+        .pricing-price span {
+            font-size: 20px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .pricing-features li {
+            padding: 12px 0;
+            font-size: 12px;
+            border-bottom: 2px solid var(--pixel-dark);
+        }
+
+        .pricing-cta {
+            width: 100%;
+            padding: 18px;
+            background: var(--pixel-blue);
+            color: var(--pixel-dark);
+            border: none;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 4px 4px 0 var(--pixel-purple);
+        }
+
+        .pricing-card.featured .pricing-cta {
+            background: var(--pixel-yellow);
+            box-shadow: 4px 4px 0 var(--pixel-orange);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 100px 30px;
+            background: var(--pixel-light);
+        }
+
+        .faq-section .section-title {
+            color: var(--pixel-purple);
+        }
+
+        .faq-grid {
+            max-width: 900px;
+            margin: 60px auto 0;
+        }
+
+        .faq-item {
+            background: var(--pixel-dark);
+            color: var(--pixel-blue);
+            padding: 40px;
+            margin-bottom: 25px;
+            border: 4px solid var(--pixel-green);
+        }
+
+        .faq-question {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            color: var(--pixel-yellow);
+        }
+
+        .faq-answer {
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            padding: 120px 30px;
+            background: var(--pixel-dark);
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 42px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            color: var(--pixel-pink);
+            text-shadow: 3px 3px 0 var(--pixel-yellow);
+        }
+
+        .final-cta p {
+            font-size: 16px;
+            margin-bottom: 50px;
+            color: var(--pixel-light);
+        }
+
+        .final-cta .hero-cta {
+            background: var(--pixel-green);
+        }
+
+        .final-cta-info {
+            margin-top: 40px;
+            font-size: 11px;
+            color: var(--pixel-light);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--pixel-light);
+            padding: 40px 30px;
+            text-align: center;
+            border-top: 4px solid var(--pixel-blue);
+        }
+
+        footer p {
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .expert-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .final-cta h2 {
+                font-size: 32px;
+            }
+        }
+
+        /* Pixel Art Sprites */
+        .pixel-heart {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background: var(--pixel-pink);
+            clip-path: polygon(
+                50% 0%, 61% 35%, 98% 35%, 98% 57%,
+                68% 57%, 68% 70%, 86% 70%, 86% 100%,
+                50% 100%, 14% 70%, 14% 35%, 32% 35%
+            );
+        }
+
+        .pixel-star {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background: var(--pixel-yellow);
+            clip-path: polygon(
+                50% 0%, 61% 38%, 85% 38%, 85% 58%,
+                100% 58%, 100% 100%, 68% 100%, 68% 85%,
+                50% 100%, 32% 85%, 32% 68%, 15% 68%,
+                15% 32%, 0 32%, 0 0, 50% 0%
+            );
+        }
+
+        /* Scanline effect */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.1) 0px,
+                rgba(0, 0, 0, 0.1) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+        }
+    </style>
+</head>
+<body>
+    <div class="scanlines"></div>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo">BOOST<span>_AI</span></div>
+            <button class="header-cta">► START</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">7-15 МАРТ 2026 <span class="pixel-star"></span></div>
+            <h1>Создавай продукты<br>в 10 раз быстрее!</h1>
+            <p class="hero-subtitle">► Научись применять нейросети в создании продуктов</p>
+            <button class="hero-cta">► ИГРАТЬ!</button>
+        </div>
+    </section>
+
+    <section class="expert-section">
+        <div class="container">
+            <h2 class="section-title">► ЭКСПЕРТ <span class="pixel-heart"></span></h2>
+            <div class="expert-card">
+                <h3 class="expert-name">Ваня Замесин</h3>
+                <p class="expert-title">► ЭКСПЕРТ #1 СНГ</p>
+                <p class="expert-description">
+                    По исследованиям — эксперт №1 среди IT менеджеров продукта в СНГ последние 4 года.
+                </p>
+
+                <div class="expert-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">30M+</div>
+                        <div class="stat-label">Пользователей</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">25%</div>
+                        <div class="stat-label">Доля рынка</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">12K+</div>
+                        <div class="stat-label">Выпускников</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="audience-section">
+        <div class="container">
+            <h2 class="section-title">► ДЛЯ КОГО <span class="pixel-star"></span></h2>
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <h3>🚀 Фаундер</h3>
+                    <p>После провалов с новой идеей. Не хочешь тратить впустую.</p>
+                    <div class="audience-get">Гипотезы за дни</div>
+                </div>
+
+                <div class="audience-card">
+                    <h3>💼 Владелец</h3>
+                    <p>Устал от зависимости от разработчиков и медленной работы.</p>
+                    <div class="audience-get">Сам за выходные</div>
+                </div>
+
+                <div class="audience-card">
+                    <h3>💡 В своё</h3>
+                    <p>Овертаймишь и выгораешь. Есть идеи, но нет сил.</p>
+                    <div class="audience-get">MVP за выходные</div>
+                </div>
+
+                <div class="audience-card">
+                    <h3>📈 В продукт</h3>
+                    <p>Хочешь в продукт, но нет опыта и работающих продуктов.</p>
+                    <div class="audience-get">Портфолио</div>
+                </div>
+
+                <div class="audience-card">
+                    <h3>🤖 Продакт</h3>
+                    <p>Читаешь про AI, но не знаешь как применять на практике.</p>
+                    <div class="audience-get">Практика</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="comparison-section">
+        <div class="container">
+            <h2 class="section-title">► СРАВНЕНИЕ <span class="pixel-star"></span></h2>
+            <div class="comparison-grid">
+                <div class="comparison-card before">
+                    <span class="comparison-badge">ДО</span>
+                    <div class="comparison-item">
+                        <span>◉ Ждёшь разработчика</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span>◉ Ждёшь аналитика</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span>◉ Ждёшь маркетолога</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span>◉ Пивот с командой</span>
+                    </div>
+                </div>
+
+                <div class="comparison-card after">
+                    <span class="comparison-badge">ПОСЛЕ</span>
+                    <div class="comparison-item">
+                        <span>★ Прототип за 15 мин</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span>★ Анализ за 15 мин</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span>★ Лендинг за 15 мин</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span>★ Пивот за день</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="program-section">
+        <div class="container">
+            <h2 class="section-title">► ПРОГРАММА <span class="pixel-star"></span></h2>
+            <div class="timeline-grid">
+                <div class="timeline-card">
+                    <div class="timeline-number">0</div>
+                    <h3>► Установка</h3>
+                    <ul>
+                        <li>Установка Cursor</li>
+                        <li>Claude Code</li>
+                        <li>Подключение</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-number">1</div>
+                    <h3>► Основы</h3>
+                    <ul>
+                        <li>Работа в Cursor</li>
+                        <li>Документы</li>
+                        <li>Лендинг</li>
+                        <li>PRD</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-number">2</div>
+                    <h3>► Прототип</h3>
+                    <ul>
+                        <li>Прототип</li>
+                        <li>Функционал</li>
+                        <li>Деплой</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-number">3</div>
+                    <h3>► Поиск</h3>
+                    <ul>
+                        <li>Парсинг</li>
+                        <li>Анализ</li>
+                        <li>Рынок</li>
+                        <li>AURA</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-number">4</div>
+                    <h3>► Авто</h3>
+                    <ul>
+                        <li>Транскрибация</li>
+                        <li>Автоматизация</li>
+                        <li>MCP</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-number">5</div>
+                    <h3>► Прод</h3>
+                    <ul>
+                        <li>Код</li>
+                        <li>QA</li>
+                        <li>UX</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-number">6</div>
+                    <h3>► Финиш</h3>
+                    <ul>
+                        <li>Деплой</li>
+                        <li>Домен</li>
+                        <li>Итоги</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing-section">
+        <div class="container">
+            <h2 class="section-title">► ТАРИФЫ <span class="pixel-star"></span></h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>► Интенсив</h3>
+                    <div class="pricing-price">49 900<span>₽</span></div>
+                    <ul class="pricing-features">
+                        <li>6 live воркшопов</li>
+                        <li>СВОЯ идея</li>
+                        <li>Записи</li>
+                        <li>Промпты</li>
+                        <li>Telegram</li>
+                        <li>AURA (2 мес)</li>
+                    </ul>
+                    <button class="pricing-cta">► ВЫБРАТЬ</button>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">► ХИТ!</div>
+                    <h3>► С поддержкой</h3>
+                    <div class="pricing-price">99 900<span>₽</span></div>
+                    <ul class="pricing-features">
+                        <li>Всё из "Интенсив"</li>
+                        <li>Куратор</li>
+                        <li>Фидбэк Вани</li>
+                        <li>Поддержка 24/7</li>
+                        <li>3 недели</li>
+                        <li>AURA Founder</li>
+                    </ul>
+                    <button class="pricing-cta">► ВЫБРАТЬ</button>
+                </div>
+            </div>
+
+            <p style="text-align: center; margin-top: 60px; font-size: 10px; color: var(--pixel-gray);">
+                ► Нужен Claude Code от $100/мес
+            </p>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">► ВОПРОСЫ <span class="pixel-star"></span></h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">► Нужно ли кодить?</div>
+                    <div class="faq-answer">
+                        Нет! 95% без опыта. Claude Code пишет код — ты описываешь результат.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">► Не успею?</div>
+                    <div class="faq-answer">
+                        Записи навсегда. В "С поддержкой" — 3 недели помощи.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">► Вернуть деньги?</div>
+                    <div class="faq-answer">
+                        Да! До второго воркшопа — полный возврат.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">► Что подготовить?</div>
+                    <div class="faq-answer">
+                        Cursor (бесплатно) + 1-3 идеи.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta">
+        <div class="container">
+            <h2>► ГОТОВ НАЧАТЬ?</h2>
+            <p>Реализуй идеи самостоятельно. Не зависи от команды.</p>
+            <button class="hero-cta">► ТАРИФЫ</button>
+            <p class="final-cta-info">58 мест • Возврат до второго воркшопа</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>BOOST AI INTENSIVE © 2026</p>
+        </div>
+    </footer>
+</body>
+</html>

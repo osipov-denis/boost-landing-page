@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOST — Вайбкодинг интенсив</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --geo-orange: #FF6B35;
+            --geo-purple: #9B59B6;
+            --geo-teal: #1ABC9C;
+            --geo-yellow: #F1C40F;
+            --geo-dark: #2C3E50;
+            --geo-light: #ECF0F1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--geo-light);
+            color: var(--geo-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Geometric Background Pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                linear-gradient(45deg, var(--geo-orange) 25%, transparent 25%),
+                linear-gradient(-45deg, var(--geo-purple) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, var(--geo-teal) 75%),
+                linear-gradient(-45deg, transparent 75%, var(--geo-yellow) 75%);
+            background-size: 80px 80px;
+            opacity: 0.05;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* Header */
+        header {
+            background: var(--geo-dark);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--geo-orange);
+        }
+
+        .logo span {
+            color: var(--geo-teal);
+        }
+
+        .header-cta {
+            background: var(--geo-orange);
+            color: var(--geo-light);
+            border: none;
+            padding: 12px 28px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            clip-path: polygon(10% 0, 100% 0, 100% 80%, 90% 100%, 0 100%, 0 20%);
+            transition: all 0.3s;
+        }
+
+        .header-cta:hover {
+            transform: scale(1.05);
+            background: var(--geo-purple);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 30px;
+            background: linear-gradient(135deg, var(--geo-dark) 0%, var(--geo-purple) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Floating Geometric Shapes */
+        .geo-shape {
+            position: absolute;
+            opacity: 0.2;
+        }
+
+        .circle {
+            width: 300px;
+            height: 300px;
+            background: var(--geo-orange);
+            border-radius: 50%;
+            top: 10%;
+            right: 10%;
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-bottom: 260px solid var(--geo-teal);
+            bottom: 20%;
+            left: 5%;
+        }
+
+        .square {
+            width: 200px;
+            height: 200px;
+            background: var(--geo-yellow);
+            top: 50%;
+            left: 15%;
+            transform: rotate(45deg);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--geo-yellow);
+            color: var(--geo-dark);
+            padding: 10px 25px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
+        }
+
+        .hero h1 {
+            font-size: 68px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            color: var(--geo-light);
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--geo-light);
+            margin-bottom: 50px;
+            opacity: 0.9;
+        }
+
+        .hero-cta {
+            background: var(--geo-teal);
+            color: var(--geo-light);
+            padding: 20px 50px;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            clip-path: polygon(0 0, 100% 0, 100% 70%, 85% 100%, 0 100%);
+            transition: all 0.3s;
+        }
+
+        .hero-cta:hover {
+            transform: scale(1.1);
+            background: var(--geo-orange);
+        }
+
+        /* Expert Section */
+        .expert-section {
+            padding: 100px 30px;
+            background: var(--geo-light);
+        }
+
+        .section-title {
+            font-size: 52px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 60px;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            position: relative;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 80px;
+            background: var(--geo-orange);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0 50%);
+            opacity: 0.3;
+        }
+
+        .expert-card {
+            background: var(--geo-dark);
+            color: var(--geo-light);
+            padding: 60px;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            clip-path: polygon(0 0, 100% 0, 95% 100%, 0 100%);
+        }
+
+        .expert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--geo-orange), var(--geo-purple), var(--geo-teal), var(--geo-yellow));
+        }
+
+        .expert-name {
+            font-size: 38px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--geo-teal);
+        }
+
+        .expert-title {
+            font-size: 16px;
+            color: var(--geo-yellow);
+            margin-bottom: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .expert-description {
+            font-size: 16px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .expert-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 2px solid rgba(255,255,255,0.1);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 25px;
+            background: rgba(255,255,255,0.05);
+            clip-path: polygon(20% 0, 100% 0, 80% 100%, 0 100%);
+        }
+
+        .stat-number {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--geo-orange);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Audience Section */
+        .audience-section {
+            padding: 100px 30px;
+            background: var(--geo-dark);
+            color: var(--geo-light);
+        }
+
+        .audience-section .section-title {
+            color: var(--geo-light);
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .audience-card {
+            background: var(--geo-light);
+            color: var(--geo-dark);
+            padding: 40px;
+            position: relative;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
+            transition: all 0.3s;
+        }
+
+        .audience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--geo-orange) 0%, var(--geo-purple) 100%);
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .audience-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .audience-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .audience-card:nth-child(2)::before {
+            background: linear-gradient(135deg, var(--geo-teal) 0%, var(--geo-yellow) 100%);
+        }
+
+        .audience-card:nth-child(3)::before {
+            background: linear-gradient(135deg, var(--geo-purple) 0%, var(--geo-orange) 100%);
+        }
+
+        .audience-card:nth-child(4)::before {
+            background: linear-gradient(135deg, var(--geo-yellow) 0%, var(--geo-teal) 100%);
+        }
+
+        .audience-card:nth-child(5)::before {
+            background: linear-gradient(135deg, var(--geo-orange) 0%, var(--geo-purple) 100%);
+        }
+
+        .audience-card h3 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .audience-card p {
+            font-size: 15px;
+            margin-bottom: 25px;
+            line-height: 1.7;
+            position: relative;
+        }
+
+        .audience-get {
+            padding: 15px;
+            background: var(--geo-orange);
+            color: var(--geo-light);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-align: center;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+        }
+
+        /* Comparison Section */
+        .comparison-section {
+            padding: 100px 30px;
+            background: var(--geo-light);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .comparison-card {
+            padding: 50px;
+        }
+
+        .comparison-card.before {
+            background: var(--geo-dark);
+            color: var(--geo-light);
+            clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
+        }
+
+        .comparison-card.after {
+            background: var(--geo-teal);
+            color: var(--geo-light);
+            clip-path: polygon(0 0, 90% 0, 100% 90%, 10% 100%);
+        }
+
+        .comparison-badge {
+            display: inline-block;
+            padding: 10px 25px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);
+        }
+
+        .comparison-card.before .comparison-badge {
+            background: var(--geo-orange);
+        }
+
+        .comparison-card.after .comparison-badge {
+            background: var(--geo-yellow);
+            color: var(--geo-dark);
+        }
+
+        .comparison-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* Program Section */
+        .program-section {
+            padding: 100px 30px;
+            background: var(--geo-dark);
+            color: var(--geo-light);
+        }
+
+        .program-section .section-title {
+            color: var(--geo-light);
+        }
+
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .timeline-card {
+            background: var(--geo-light);
+            color: var(--geo-dark);
+            padding: 35px;
+            position: relative;
+            clip-path: polygon(15% 0, 100% 0, 85% 100%, 0 100%);
+        }
+
+        .timeline-number {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 15px;
+            opacity: 0.2;
+        }
+
+        .timeline-card:nth-child(1) .timeline-number { color: var(--geo-orange); }
+        .timeline-card:nth-child(2) .timeline-number { color: var(--geo-purple); }
+        .timeline-card:nth-child(3) .timeline-number { color: var(--geo-teal); }
+        .timeline-card:nth-child(4) .timeline-number { color: var(--geo-yellow); }
+        .timeline-card:nth-child(5) .timeline-number { color: var(--geo-orange); }
+        .timeline-card:nth-child(6) .timeline-number { color: var(--geo-purple); }
+        .timeline-card:nth-child(7) .timeline-number { color: var(--geo-teal); }
+
+        .timeline-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .timeline-card ul {
+            list-style: none;
+        }
+
+        .timeline-card li {
+            padding: 10px 0;
+            font-size: 14px;
+            border-bottom: 2px solid rgba(0,0,0,0.1);
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 100px 30px;
+            background: var(--geo-light);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 50px;
+            max-width: 1000px;
+            margin: 60px auto 0;
+        }
+
+        .pricing-card {
+            background: var(--geo-dark);
+            color: var(--geo-light);
+            padding: 60px;
+            position: relative;
+            clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
+        }
+
+        .pricing-card.featured {
+            background: var(--geo-purple);
+            transform: scale(1.05);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--geo-yellow);
+            color: var(--geo-dark);
+            padding: 8px 25px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0 50%);
+        }
+
+        .pricing-card h3 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .pricing-price {
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 40px;
+        }
+
+        .pricing-card:not(.featured) .pricing-price {
+            color: var(--geo-orange);
+        }
+
+        .pricing-card.featured .pricing-price {
+            color: var(--geo-yellow);
+        }
+
+        .pricing-price span {
+            font-size: 24px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .pricing-features li {
+            padding: 12px 0;
+            font-size: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .pricing-cta {
+            width: 100%;
+            padding: 20px;
+            background: var(--geo-orange);
+            color: var(--geo-light);
+            border: none;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
+            transition: all 0.3s;
+        }
+
+        .pricing-card.featured .pricing-cta {
+            background: var(--geo-yellow);
+            color: var(--geo-dark);
+        }
+
+        .pricing-cta:hover {
+            transform: scale(1.05);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 100px 30px;
+            background: var(--geo-dark);
+            color: var(--geo-light);
+        }
+
+        .faq-section .section-title {
+            color: var(--geo-light);
+        }
+
+        .faq-grid {
+            max-width: 900px;
+            margin: 60px auto 0;
+        }
+
+        .faq-item {
+            background: var(--geo-light);
+            color: var(--geo-dark);
+            padding: 40px;
+            margin-bottom: 25px;
+            clip-path: polygon(0 15%, 100% 0, 100% 85%, 0 100%);
+        }
+
+        .faq-question {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .faq-answer {
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            padding: 120px 30px;
+            background: linear-gradient(135deg, var(--geo-orange) 0%, var(--geo-purple) 100%);
+            text-align: center;
+            color: var(--geo-light);
+            position: relative;
+        }
+
+        .final-cta h2 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        .final-cta p {
+            font-size: 18px;
+            margin-bottom: 50px;
+            opacity: 0.95;
+        }
+
+        .final-cta .hero-cta {
+            background: var(--geo-yellow);
+            color: var(--geo-dark);
+        }
+
+        .final-cta-info {
+            margin-top: 40px;
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--geo-dark);
+            color: var(--geo-light);
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .expert-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .final-cta h2 {
+                font-size: 36px;
+            }
+
+            .circle, .triangle, .square {
+                display: none;
+            }
+        }
+
+        /* Animations */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .animate-rotate {
+            animation: rotate 20s linear infinite;
+        }
+
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">BOOST<span>_AI</span></div>
+            <button class="header-cta">Записаться</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="geo-shape circle animate-rotate"></div>
+        <div class="geo-shape triangle animate-float"></div>
+        <div class="geo-shape square"></div>
+
+        <div class="hero-content">
+            <div class="hero-badge">7 — 15 Март 2026</div>
+            <h1>Создавай продукты<br>в 10 раз быстрее</h1>
+            <p class="hero-subtitle">Научись применять нейросети в полном процессе создания продукта: от анализа рынка до деплоя в продакшн</p>
+            <button class="hero-cta">Начать обучение</button>
+        </div>
+    </section>
+
+    <section class="expert-section">
+        <div class="container">
+            <h2 class="section-title">Эксперт</h2>
+            <div class="expert-card">
+                <h3 class="expert-name">Ваня Замесин</h3>
+                <p class="expert-title">Эксперт №1 среди менеджеров продукта в СНГ</p>
+                <p class="expert-description">
+                    По результатам независимых исследований, Иван занимает первое место среди IT менеджеров продукта в СНГ на протяжении четырех лет.
+                </p>
+
+                <div class="expert-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">30M+</div>
+                        <div class="stat-label">MAU Яндекс Картинки</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">25%</div>
+                        <div class="stat-label">Рыночной доли</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">12K+</div>
+                        <div class="stat-label">Выпускников</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="audience-section">
+        <div class="container">
+            <h2 class="section-title">Для кого</h2>
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <h3>🚀 Фаундер</h3>
+                    <p>После провалов — с новой идеей. Боишься потратить ещё год и кровно заработанные.</p>
+                    <div class="audience-get">Проверяй гипотезы за дни</div>
+                </div>
+
+                <div class="audience-card">
+                    <h3>💼 Владелец бизнеса</h3>
+                    <p>Устал зависеть от разработчиков. Команда тратит уйму времени на рутину.</p>
+                    <div class="audience-get">Создавай инструменты сам</div>
+                </div>
+
+                <div class="audience-card">
+                    <h3>💡 Из найма в своё</h3>
+                    <p>Овертаймишь и выгораешь. Есть идеи своих продуктов, но по вечерам сил нет.</p>
+                    <div class="audience-get">Создавай MVP за выходные</div>
+                </div>
+
+                <div class="audience-card">
+                    <h3>📈 Переход в продукт</h3>
+                    <p>Хочешь в продукт, но на собеседованиях спрашивают: "Над какими продуктами работали?"</p>
+                    <div class="audience-get">Портфолио из продуктов</div>
+                </div>
+
+                <div class="audience-card">
+                    <h3>🤖 Продакт в найме</h3>
+                    <p>Читаешь про AI, но не понимаешь КАК применять. Боишься выпасть из прогресса.</p>
+                    <div class="audience-get">Практика работы с AI</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="comparison-section">
+        <div class="container">
+            <h2 class="section-title">До и После</h2>
+            <div class="comparison-grid">
+                <div class="comparison-card before">
+                    <span class="comparison-badge">До интенсива</span>
+                    <div class="comparison-item">
+                        <span>👨‍💻 Ждёшь разработчика неделю</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span>📊 Ждёшь аналитика для данных</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span>✍️ Ждёшь маркетолога для лендинга</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span>🔄 Пивот = новый цикл с командой</span>
+                    </div>
+                </div>
+
+                <div class="comparison-card after">
+                    <span class="comparison-badge">После интенсива</span>
+                    <div class="comparison-item">
+                        <span>⚡ Прототип за 15 минут сам</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span>⚡ Анализ рынка за 15 минут сам</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span>⚡ Лендинг за 15 минут сам</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span>⚡ Пивот за день, ни от кого не завися</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="program-section">
+        <div class="container">
+            <h2 class="section-title">Программа</h2>
+            <div class="timeline-grid">
+                <div class="timeline-card">
+                    <div class="timeline-number">0</div>
+                    <h3>Установка</h3>
+                    <ul>
+                        <li>Установка Cursor</li>
+                        <li>Регистрация в Claude Code</li>
+                        <li>Подключение к Cursor</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-number">1</div>
+                    <h3>Основы</h3>
+                    <ul>
+                        <li>Принципы работы с Cursor</li>
+                        <li>Редактирование документов</li>
+                        <li>Первый лендинг</li>
+                        <li>Написание PRD</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-number">2</div>
+                    <h3>Прототип</h3>
+                    <ul>
+                        <li>Прототип своего продукта</li>
+                        <li>Доработка функциональности</li>
+                        <li>Деплой прототипа</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-number">3</div>
+                    <h3>Исследование</h3>
+                    <ul>
+                        <li>Парсинг сайтов конкурентов</li>
+                        <li>Анализ отзывов клиентов</li>
+                        <li>Исследование рынка</li>
+                        <li>AURA для анализа</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-number">4</div>
+                    <h3>Автоматизация</h3>
+                    <ul>
+                        <li>Транскрибация созвонов</li>
+                        <li>Автоматизация процессов</li>
+                        <li>Подключение MCP сервисов</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-number">5</div>
+                    <h3>Продакшн</h3>
+                    <ul>
+                        <li>Написание продакшн-кода</li>
+                        <li>QA-тесты с Claude Code</li>
+                        <li>UX-тестирование</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-number">6</div>
+                    <h3>Финал</h3>
+                    <ul>
+                        <li>Деплой в продакшн</li>
+                        <li>Подключение домена</li>
+                        <li>Итоги обучения</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing-section">
+        <div class="container">
+            <h2 class="section-title">Тарифы</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Интенсив</h3>
+                    <div class="pricing-price">49 900<span>₽</span></div>
+                    <ul class="pricing-features">
+                        <li>6 live воркшопов</li>
+                        <li>Работа над СВОЕЙ идеей</li>
+                        <li>Записи воркшопов</li>
+                        <li>Промпты + шаблоны</li>
+                        <li>Telegram-чат участников</li>
+                        <li>AURA подписка (2 мес)</li>
+                    </ul>
+                    <button class="pricing-cta">Выбрать</button>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Популярный</div>
+                    <h3>С поддержкой</h3>
+                    <div class="pricing-price">99 900<span>₽</span></div>
+                    <ul class="pricing-features">
+                        <li>Всё из тарифа "Интенсив"</li>
+                        <li>Персональный опытный куратор</li>
+                        <li>Фидбэк от Вани Замесина</li>
+                        <li>Поддержка 24/7</li>
+                        <li>3 недели поддержки после</li>
+                        <li>AURA Founder (3 мес)</li>
+                    </ul>
+                    <button class="pricing-cta">Выбрать</button>
+                </div>
+            </div>
+
+            <p style="text-align: center; margin-top: 50px; font-size: 13px; color: var(--geo-dark); opacity: 0.6;">
+                Для обучения потребуется подписка на Claude Code от $100/мес
+            </p>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">FAQ</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">Нужно ли уметь программировать?</div>
+                    <div class="faq-answer">
+                        Нет. 95% участников без техбэкграунда. Claude Code пишет код — вы просто описываете желаемый результат.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Что если не успею?</div>
+                    <div class="faq-answer">
+                        Записи доступны навсегда. В тарифе "С поддержкой" предусмотрены 3 недели дополнительной помощи.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Можно вернуть деньги?</div>
+                    <div class="faq-answer">
+                        Да, возможен полный возврат до начала второго воркшопа.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Что подготовить?</div>
+                    <div class="faq-answer">
+                        Установить Cursor (бесплатно) и подготовить 1-3 идеи для работы.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta">
+        <div class="container">
+            <h2>Хочешь освободиться?</h2>
+            <p>Когда приходит идея — реализуй её самостоятельно. Не жди разработчиков, дизайнеров, аналитиков.</p>
+            <button class="hero-cta">Смотреть тарифы</button>
+            <p class="final-cta-info">58 мест на 1 поток • Возврат до начала второго воркшопа</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>BOOST AI INTENSIVE © 2026 // ВСЕ ПРАВА ЗАЩИЩЕНЫ</p>
+        </div>
+    </footer>
+</body>
+</html>

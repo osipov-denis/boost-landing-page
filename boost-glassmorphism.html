@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOST — Glassmorphism</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --white: #ffffff;
+            --text-dark: #1a1a2e;
+            --text-light: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Floating orbs background */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.5;
+            z-index: 0;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--gradient-3);
+            top: -100px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--gradient-2);
+            bottom: -150px;
+            right: -150px;
+            animation-delay: 5s;
+        }
+
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+            background: var(--gradient-1);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, -50px) scale(1.1); }
+            50% { transform: translate(-30px, 30px) scale(0.9); }
+            75% { transform: translate(-50px, -30px) scale(1.05); }
+        }
+
+        /* Glassmorphism card */
+        .glass {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 3rem;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--white);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-cta {
+            padding: 0.75rem 2rem;
+            background: var(--white);
+            color: #764ba2;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 3rem 5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-date {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--white);
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            color: var(--white);
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            padding: 1rem 2.5rem;
+            background: var(--white);
+            color: #764ba2;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary {
+            padding: 1rem 2.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 6rem 3rem;
+        }
+
+        .section-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--white);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--white);
+            text-align: center;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Expert */
+        .expert-card {
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .expert-name {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .expert-description {
+            font-size: 1.0625rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Audience */
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .audience-item {
+            padding: 2rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .audience-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .audience-item h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .audience-item p {
+            font-size: 0.9375rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* Program */
+        .program-list {
+            list-style: none;
+        }
+
+        .program-item {
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .program-item:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .program-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1;
+            min-width: 60px;
+        }
+
+        .program-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.9);
+            padding-top: 0.5rem;
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            padding: 0;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .pricing-header {
+            padding: 2.5rem 2rem;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .pricing-name {
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .pricing-features {
+            list-style: none;
+            padding: 2rem;
+        }
+
+        .pricing-feature {
+            font-size: 0.9375rem;
+            padding: 0.75rem 0;
+            color: rgba(255, 255, 255, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .pricing-cta {
+            display: block;
+            padding: 1.25rem 2rem;
+            background: var(--white);
+            color: #764ba2;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 0 0 20px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-cta:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Spots */
+        .spots {
+            text-align: center;
+            padding: 4rem 3rem;
+        }
+
+        .spots-card {
+            display: inline-block;
+            padding: 3rem 5rem;
+            border-radius: 20px;
+        }
+
+        .spots-number {
+            font-size: clamp(4rem, 10vw, 8rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .spots-text {
+            font-size: 1rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 3rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-text {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 1rem;
+            }
+
+            header {
+                padding: 1rem 1.5rem;
+            }
+
+            .hero {
+                padding: 8rem 1.5rem 4rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .audience-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .program-item {
+                flex-direction: column;
+            }
+
+            .program-number {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <header>
+        <div class="header-content">
+            <div class="logo">BOOST</div>
+            <a href="#pricing" class="header-cta">Join Now</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-date glass">🔥 March 7 — 15, 2026</div>
+            <h1>Vibe Coding Intensive<br>Create Products with AI</h1>
+            <p class="hero-description">Master the art of building products 10x faster with neural networks. Research markets, write PRDs, create landing pages, and launch MVPs with unprecedented efficiency.</p>
+            <div class="hero-cta">
+                <a href="#pricing" class="btn-primary">Get Started</a>
+                <a href="#program" class="btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-wrapper">
+            <div class="section-label">The Expert</div>
+            <h2 class="section-title">Vanya Zamesin</h2>
+            <div class="expert-card glass">
+                <div class="expert-name">Vanya Zamesin</div>
+                <p class="expert-description">The #1 product management expert in CIS. Meta founder. Creator of the most popular product course with 12,000 graduates. A true pioneer in vibe coding.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-wrapper">
+            <div class="section-label">For Whom</div>
+            <h2 class="section-title">Your Journey</h2>
+            <div class="audience-grid">
+                <div class="audience-item glass">
+                    <h3>Founders</h3>
+                    <p>Validate hypotheses in days. Don't wait for teams.</p>
+                </div>
+                <div class="audience-item glass">
+                    <h3>Business Owners</h3>
+                    <p>Weekend automation. Break free from developers.</p>
+                </div>
+                <div class="audience-item glass">
+                    <h3>Career Changers</h3>
+                    <p>Build MVPs while employed. Safe creative freedom.</p>
+                </div>
+                <div class="audience-item glass">
+                    <h3>Aspiring PMs</h3>
+                    <p>Real portfolio projects. Escape the catch-22.</p>
+                </div>
+                <div class="audience-item glass">
+                    <h3>Practitioners</h3>
+                    <p>Hands-on AI experience. Practice over theory.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-wrapper">
+            <div class="section-label">The Program</div>
+            <h2 class="section-title">Six Workshops</h2>
+            <ul class="program-list">
+                <li class="program-item glass">
+                    <span class="program-number">0</span>
+                    <span class="program-text">Setup tools. Build first landing page. Write PRDs.</span>
+                </li>
+                <li class="program-item glass">
+                    <span class="program-number">1</span>
+                    <span class="program-text">Prototype. Add features. Deploy first version.</span>
+                </li>
+                <li class="program-item glass">
+                    <span class="program-number">2</span>
+                    <span class="program-text">Gather data. Scrape competitors. Analyze markets.</span>
+                </li>
+                <li class="program-item glass">
+                    <span class="program-number">3</span>
+                    <span class="program-text">Transcribe calls. Automate workflows. MCP setup.</span>
+                </li>
+                <li class="program-item glass">
+                    <span class="program-number">4</span>
+                    <span class="program-text">Production code. QA testing. UX validation.</span>
+                </li>
+                <li class="program-item glass">
+                    <span class="program-number">5</span>
+                    <span class="program-text">Final deployment. Domain setup. Launch live.</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="pricing">
+        <div class="section-wrapper">
+            <div class="section-label">Investment</div>
+            <h2 class="section-title">Choose Your Plan</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card glass">
+                    <div class="pricing-header">
+                        <div class="pricing-name">Intensive</div>
+                        <div class="pricing-price">49 900₽</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">6 workshop recordings</li>
+                        <li class="pricing-feature">Prompts & templates</li>
+                        <li class="pricing-feature">Telegram community</li>
+                        <li class="pricing-feature">6 live workshops</li>
+                        <li class="pricing-feature">Work on your idea</li>
+                    </ul>
+                    <a href="#" class="pricing-cta">Select</a>
+                </div>
+                <div class="pricing-card glass">
+                    <div class="pricing-header" style="background: rgba(255, 255, 255, 0.3);">
+                        <div class="pricing-name">With Support</div>
+                        <div class="pricing-price">79 900₽</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">All Intensive benefits</li>
+                        <li class="pricing-feature">Personal mentor</li>
+                        <li class="pricing-feature">Direct feedback from Vanya</li>
+                        <li class="pricing-feature">24/7 support</li>
+                        <li class="pricing-feature">3 weeks post-program</li>
+                        <li class="pricing-feature">AURA Founder 3 months</li>
+                    </ul>
+                    <a href="#" class="pricing-cta">Select</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="spots">
+        <div class="spots-card glass">
+            <div class="spots-number">58</div>
+            <div class="spots-text">places left of 70</div>
+        </div>
+    </section>
+
+    <footer>
+        <p class="footer-text">© 2026 BOOST. Glassmorphism Vibe Coding Intensive.</p>
+    </footer>
+</body>
+</html>

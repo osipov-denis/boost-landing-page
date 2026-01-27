@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOST — Cyberpunk Vibe Coding</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-pink: #ff006e;
+            --neon-blue: #00f5ff;
+            --neon-purple: #b537f2;
+            --dark-bg: #0a0e27;
+            --darker-bg: #050816;
+            --grid-color: rgba(0, 245, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--dark-bg);
+            color: #ffffff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Grid background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Scanlines overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.1) 0px,
+                rgba(0, 0, 0, 0.1) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0.3;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            border-bottom: 2px solid var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: var(--neon-blue);
+            text-shadow:
+                0 0 10px var(--neon-blue),
+                0 0 20px var(--neon-blue),
+                0 0 30px var(--neon-blue);
+            letter-spacing: 0.1em;
+            animation: flicker 3s infinite;
+        }
+
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+            20%, 24%, 55% { opacity: 0.8; }
+        }
+
+        .header-cta {
+            padding: 0.75rem 2rem;
+            background: transparent;
+            color: var(--neon-pink);
+            border: 2px solid var(--neon-pink);
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(255, 0, 110, 0.3);
+        }
+
+        .header-cta:hover {
+            background: var(--neon-pink);
+            color: var(--dark-bg);
+            box-shadow:
+                0 0 20px var(--neon-pink),
+                0 0 40px var(--neon-pink),
+                inset 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 10rem 3rem 5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-date {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--neon-pink);
+            background: rgba(255, 0, 110, 0.1);
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--neon-pink);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            box-shadow: 0 0 15px rgba(255, 0, 110, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 0, 110, 0.3); }
+            50% { box-shadow: 0 0 25px rgba(255, 0, 110, 0.5); }
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.2;
+            max-width: 1100px;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 5s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 700px;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            gap: 1.5rem;
+        }
+
+        .btn-cyber {
+            padding: 1rem 2.5rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9375rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+        }
+
+        .btn-cyber.primary {
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            color: var(--dark-bg);
+            border: none;
+        }
+
+        .btn-cyber.primary:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 5px 30px rgba(0, 245, 255, 0.5),
+                0 0 60px rgba(181, 55, 242, 0.3);
+        }
+
+        .btn-cyber.secondary {
+            background: transparent;
+            color: var(--neon-blue);
+            border: 2px solid var(--neon-blue);
+            padding: calc(1rem - 2px) calc(2.5rem - 2px);
+        }
+
+        .btn-cyber.secondary:hover {
+            background: rgba(0, 245, 255, 0.1);
+            box-shadow:
+                0 0 20px rgba(0, 245, 255, 0.4),
+                inset 0 0 20px rgba(0, 245, 255, 0.1);
+        }
+
+        /* Sections */
+        section {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 3rem;
+        }
+
+        .section-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--neon-pink);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 30px;
+            height: 2px;
+            background: var(--neon-pink);
+            box-shadow: 0 0 10px var(--neon-pink);
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--neon-blue);
+            text-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+        }
+
+        /* Expert */
+        .expert {
+            background: linear-gradient(180deg, var(--dark-bg) 0%, var(--darker-bg) 100%);
+            border-top: 1px solid var(--grid-color);
+            border-bottom: 1px solid var(--grid-color);
+        }
+
+        .expert-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .expert-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--neon-purple);
+            text-shadow: 0 0 20px rgba(181, 55, 242, 0.5);
+        }
+
+        .expert-description {
+            font-size: 1.0625rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+
+        /* Audience */
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .audience-item {
+            background: rgba(10, 14, 39, 0.8);
+            border: 1px solid var(--neon-blue);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+        }
+
+        .audience-item:hover {
+            transform: translateY(-5px);
+            box-shadow:
+                0 10px 40px rgba(0, 245, 255, 0.3),
+                inset 0 0 30px rgba(0, 245, 255, 0.05);
+            border-color: var(--neon-pink);
+        }
+
+        .audience-item h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--neon-blue);
+        }
+
+        .audience-item p {
+            font-size: 0.9375rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        /* Program */
+        .program {
+            background: var(--darker-bg);
+        }
+
+        .program-list {
+            list-style: none;
+            counter-reset: program-counter;
+        }
+
+        .program-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 2rem;
+            background: rgba(10, 14, 39, 0.6);
+            border-left: 3px solid var(--neon-purple);
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .program-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(181, 55, 242, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .program-item:hover::before {
+            opacity: 1;
+        }
+
+        .program-item:hover {
+            border-left-color: var(--neon-pink);
+            transform: translateX(10px);
+        }
+
+        .program-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--neon-purple);
+            margin-right: 2rem;
+            line-height: 1;
+            text-shadow: 0 0 15px rgba(181, 55, 242, 0.5);
+            min-width: 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .program-text {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            padding-top: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: rgba(10, 14, 39, 0.8);
+            border: 2px solid var(--neon-blue);
+            padding: 0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .pricing-card:hover::before {
+            left: 100%;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow:
+                0 15px 50px rgba(0, 245, 255, 0.3),
+                0 0 50px rgba(0, 245, 255, 0.2);
+            border-color: var(--neon-pink);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--neon-pink);
+        }
+
+        .pricing-card.featured:hover {
+            box-shadow:
+                0 15px 50px rgba(255, 0, 110, 0.3),
+                0 0 50px rgba(255, 0, 110, 0.2);
+        }
+
+        .pricing-header {
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 245, 255, 0.2);
+            background: linear-gradient(180deg, rgba(0, 245, 255, 0.1), transparent);
+        }
+
+        .pricing-card.featured .pricing-header {
+            background: linear-gradient(180deg, rgba(255, 0, 110, 0.1), transparent);
+            border-bottom-color: rgba(255, 0, 110, 0.2);
+        }
+
+        .pricing-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+            color: var(--neon-blue);
+        }
+
+        .pricing-card.featured .pricing-name {
+            color: var(--neon-pink);
+        }
+
+        .pricing-price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .pricing-features {
+            list-style: none;
+            padding: 2rem;
+        }
+
+        .pricing-feature {
+            font-size: 0.9375rem;
+            padding: 0.75rem 0;
+            color: rgba(255, 255, 255, 0.7);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .pricing-feature::before {
+            content: '▹';
+            color: var(--neon-blue);
+            font-size: 1.25rem;
+        }
+
+        .pricing-card.featured .pricing-feature::before {
+            color: var(--neon-pink);
+        }
+
+        .pricing-cta {
+            display: block;
+            padding: 1.25rem 2rem;
+            background: transparent;
+            color: var(--neon-blue);
+            text-align: center;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9375rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-top: 1px solid rgba(0, 245, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .pricing-cta:hover {
+            background: rgba(0, 245, 255, 0.1);
+            color: #ffffff;
+        }
+
+        .pricing-card.featured .pricing-cta {
+            color: var(--neon-pink);
+            border-top-color: rgba(255, 0, 110, 0.2);
+        }
+
+        .pricing-card.featured .pricing-cta:hover {
+            background: rgba(255, 0, 110, 0.1);
+        }
+
+        /* Spots */
+        .spots {
+            padding: 5rem 3rem;
+            background: linear-gradient(180deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+            text-align: center;
+            border-top: 1px solid var(--neon-pink);
+            box-shadow: inset 0 10px 50px rgba(255, 0, 110, 0.1);
+        }
+
+        .spots-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(4rem, 12vw, 10rem);
+            font-weight: 900;
+            color: var(--neon-pink);
+            line-height: 1;
+            text-shadow:
+                0 0 20px var(--neon-pink),
+                0 0 40px var(--neon-pink),
+                0 0 60px var(--neon-pink);
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { text-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink); }
+            50% { text-shadow: 0 0 30px var(--neon-pink), 0 0 60px var(--neon-pink), 0 0 90px var(--neon-pink); }
+        }
+
+        .spots-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            margin-top: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 3rem;
+            background: var(--darker-bg);
+            text-align: center;
+            border-top: 1px solid var(--grid-color);
+        }
+
+        .footer-text {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 1rem 1.5rem;
+            }
+
+            .hero {
+                padding: 8rem 1.5rem 4rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .section-wrapper {
+                padding: 4rem 1.5rem;
+            }
+
+            .audience-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .program-item {
+                flex-direction: column;
+            }
+
+            .program-number {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">BOOST</div>
+            <a href="#pricing" class="header-cta">JOIN →</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-date">🔥 7 — 15 МАРТ 2026</div>
+        <h1>Вайбкодинг курс<br>BOOST — интенсив<br>по созданию продуктов<br>с AI</h1>
+        <p class="hero-description">Научись создавать продукты в 10 раз быстрее с нейросетями. Исследуй рынок, пиши продуктовые требования, создавай лендинги и MVP. Будущее уже здесь.</p>
+        <div class="hero-cta">
+            <a href="#pricing" class="btn-cyber primary">Начать</a>
+            <a href="#program" class="btn-cyber secondary">Программа</a>
+        </div>
+    </section>
+
+    <section class="expert">
+        <div class="section-wrapper">
+            <div class="expert-content">
+                <div class="section-label">Эксперт</div>
+                <h2 class="expert-name">Ваня Замесин</h2>
+                <p class="expert-description">Эксперт №1 среди менеджеров продукта в СНГ. Основатель Меты. Создатель курса по продукту, который прошли 12 000 специалистов. Пионер вайб-кодинга.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="audience">
+        <div class="section-wrapper">
+            <div class="section-label">Для кого</div>
+            <h2 class="section-title">Твой путь</h2>
+            <div class="audience-grid">
+                <div class="audience-item">
+                    <h3>Фаундер</h3>
+                    <p>Проверяй гипотезы за дни. Не жди команду. Действуй мгновенно.</p>
+                </div>
+                <div class="audience-item">
+                    <h3>Бизнес</h3>
+                    <p>Автоматизация за выходные. Не зависи от разработчиков.</p>
+                </div>
+                <div class="audience-item">
+                    <h3>Из найма</h3>
+                    <p>MVP за выходные. Создавай продукт без риска.</p>
+                </div>
+                <div class="audience-item">
+                    <h3>В продукт</h3>
+                    <p>Реальное портфолио. Выход из порочного круга.</p>
+                </div>
+                <div class="audience-item">
+                    <h3>Продакт</h3>
+                    <p>Пойми AI на практике. Не теория — чистый опыт.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="program">
+        <div class="section-wrapper">
+            <div class="section-label">Программа</div>
+            <h2 class="section-title">6 воркшопов</h2>
+            <ul class="program-list">
+                <li class="program-item">
+                    <span class="program-number">0</span>
+                    <span class="program-text">Установка инструментов. Первый лендинг. PRD и продуктовые требования.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">1</span>
+                    <span class="program-text">Прототипирование. Доработка функциональности. Первый деплой.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">2</span>
+                    <span class="program-text">Сбор данных. Парсинг. Анализ рынка. Jobs, сегменты, конкуренты.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">3</span>
+                    <span class="program-text">Транскрибация. Автоматизация процессов. MCP интеграции.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">4</span>
+                    <span class="program-text">Продакшн-код. QA и UX тестирование. Подготовка к релизу.</span>
+                </li>
+                <li class="program-item">
+                    <span class="program-number">5</span>
+                    <span class="program-text">Финальный деплой. Домен. Запуск в продакшн. Итоги.</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="section-wrapper">
+            <div class="section-label">Тарифы</div>
+            <h2 class="section-title">Выбери свой уровень</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <div class="pricing-name">Интенсив</div>
+                        <div class="pricing-price">49 900₽</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">Записи 6 воркшопов</li>
+                        <li class="pricing-feature">Промпты и шаблоны</li>
+                        <li class="pricing-feature">Telegram-чат</li>
+                        <li class="pricing-feature">6 live воркшопов</li>
+                        <li class="pricing-feature">Работа над своей идеей</li>
+                    </ul>
+                    <a href="#" class="pricing-cta">ВЫБРАТЬ</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-header">
+                        <div class="pricing-name">С поддержкой</div>
+                        <div class="pricing-price">79 900₽</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">Всё из «Интенсив»</li>
+                        <li class="pricing-feature">Персональный куратор</li>
+                        <li class="pricing-feature">Фидбэк от Вани Замесина</li>
+                        <li class="pricing-feature">Поддержка 24/7</li>
+                        <li class="pricing-feature">3 недели после</li>
+                        <li class="pricing-feature">AURA Founder 3 мес.</li>
+                    </ul>
+                    <a href="#" class="pricing-cta">ВЫБРАТЬ</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="spots">
+        <div class="spots-number">58</div>
+        <div class="spots-text">МЕСТ ОСТАЛОСЬ ИЗ 70</div>
+    </section>
+
+    <footer>
+        <p class="footer-text">© 2026 BOOST. Cyberpunk Vibe Coding Intensive.</p>
+    </footer>
+</body>
+</html>
